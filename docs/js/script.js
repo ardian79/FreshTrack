@@ -10,59 +10,12 @@ $(document).ready(function () {
 
     $('#form-panen').submit(function (e) {
         e.preventDefault();
-        
-        const komoditasId = $('#komoditas').val();
-        if (!komoditasId) {
-            alert('Silakan pilih komoditas terlebih dahulu.');
-            return;
-        }
-
-        const beratVal = parseFloat($('#berat').val());
-        if (isNaN(beratVal) || beratVal <= 0) {
-            alert('Berat harus lebih dari 0 Kg.');
-            return;
-        }
-        const data = {
-            komoditasId: parseInt(komoditasId),
-            lahan: $('#lahan').val(),
-            berat: beratVal,
-            tanggal: $('#tanggal-panen').val()
-        };
-        $.ajax({
-            url: '/api/panen',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-            success: function () {
-                $('#form-panen')[0].reset();
-                document.getElementById('dd-komoditas-text').innerText = '-- Pilih Komoditas --';
-                $('#tanggal-panen').val(today);
-                showPage('prioritas');
-            }
-        });
+        alert('Ini adalah versi statis (GitHub Pages). Data tidak dapat disimpan ke database.');
     });
 
     $('#form-komoditas').submit(function (e) {
         e.preventDefault();
-        const umurVal = parseInt($('#umur-komoditas').val());
-        if (isNaN(umurVal) || umurVal <= 0) {
-            alert('Umur simpan harus minimal 1 hari.');
-            return;
-        }
-        const data = {
-            nama: $('#nama-komoditas').val(),
-            umur: umurVal
-        };
-        $.ajax({
-            url: '/api/komoditas',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-            success: function () {
-                $('#form-komoditas')[0].reset();
-                loadKomoditasOptions();
-            }
-        });
+        alert('Ini adalah versi statis (GitHub Pages). Data tidak dapat disimpan ke database.');
     });
 });
 
@@ -109,39 +62,46 @@ function formatDate(dateString) {
 }
 
 function loadDashboard() {
-    $.getJSON('/api/dashboard', function (res) {
-        $('#dash-total-berat').text(res.totalBeratGudang);
-        $('#dash-total-batch').text(res.totalBatchGudang);
-        
-        $('#dash-rekap-segar').text(res.rekapSegar);
-        $('#dash-rekap-cukup').text(res.rekapCukup);
-        $('#dash-rekap-kritis').text(res.rekapKritis);
+    const res = {
+        totalBeratGudang: 1250,
+        totalBatchGudang: 42,
+        rekapSegar: 25,
+        rekapCukup: 10,
+        rekapKritis: 7,
+        totalKritis: 7,
+        prioritasSingkat: [
+            { komoditas: 'Bayam', lahan: 'Lahan A', berat: 50, sisaUmur: 1, status: 'Kritis' },
+            { komoditas: 'Tomat', lahan: 'Lahan B', berat: 120, sisaUmur: 3, status: 'Cukup' },
+            { komoditas: 'Cabai', lahan: 'Greenhouse 1', berat: 80, sisaUmur: 6, status: 'Segar' }
+        ]
+    };
 
-        if (res.totalKritis > 0) {
-            $('#box-early-warning').removeClass('hidden');
-            $('#warning-kritis').text('Perhatian: Terdapat ' + res.totalKritis + ' batch berstatus KRITIS. Segera lakukan distribusi!');
-        } else {
-            $('#box-early-warning').addClass('hidden');
-        }
+    $('#dash-total-berat').text(res.totalBeratGudang);
+    $('#dash-total-batch').text(res.totalBatchGudang);
+    $('#dash-rekap-segar').text(res.rekapSegar);
+    $('#dash-rekap-cukup').text(res.rekapCukup);
+    $('#dash-rekap-kritis').text(res.rekapKritis);
 
-        let rows = '';
-        if (res.prioritasSingkat.length === 0) {
-            rows = emptyState("Gudang kosong, belum ada batch aktif.");
-        } else {
-            res.prioritasSingkat.forEach(function (b) {
-                rows += `<tr class="hover:bg-slate-50 transition-colors">
-                    <td class="px-6 py-4 font-bold text-slate-800 text-center">${b.komoditas}</td>
-                    <td class="px-6 py-4 text-slate-600 font-medium text-center">${b.lahan}</td>
-                    <td class="px-6 py-4 text-slate-600 text-center">${b.berat} Kg</td>
-                    <td class="px-6 py-4 font-bold text-slate-800 text-center">${b.sisaUmur} Hari</td>
-                    <td class="px-6 py-4 text-center">${badgeStatus(b.status)}</td>
-                </tr>`;
-            });
-        }
-        $('#tabel-dash-prioritas').html(rows);
+    if (res.totalKritis > 0) {
+        $('#box-early-warning').removeClass('hidden');
+        $('#warning-kritis').text('Perhatian: Terdapat ' + res.totalKritis + ' batch berstatus KRITIS. Segera lakukan distribusi!');
+    } else {
+        $('#box-early-warning').addClass('hidden');
+    }
 
-        updateCharts(res);
+    let rows = '';
+    res.prioritasSingkat.forEach(function (b) {
+        rows += `<tr class="hover:bg-slate-50 transition-colors">
+            <td class="px-6 py-4 font-bold text-slate-800 text-center">${b.komoditas}</td>
+            <td class="px-6 py-4 text-slate-600 font-medium text-center">${b.lahan}</td>
+            <td class="px-6 py-4 text-slate-600 text-center">${b.berat} Kg</td>
+            <td class="px-6 py-4 font-bold text-slate-800 text-center">${b.sisaUmur} Hari</td>
+            <td class="px-6 py-4 text-center">${badgeStatus(b.status)}</td>
+        </tr>`;
     });
+    $('#tabel-dash-prioritas').html(rows);
+
+    updateCharts(res);
 }
 
 function updateCharts(res) {
@@ -165,27 +125,7 @@ function updateCharts(res) {
             plugins: {
                 legend: { 
                     position: 'bottom', 
-                    labels: { 
-                        usePointStyle: true, 
-                        boxWidth: 8, 
-                        padding: 20, 
-                        font: { family: 'Inter', size: 11 } 
-                    },
-                    onHover: (e) => {
-                        e.native.target.style.cursor = 'pointer';
-                    },
-                    onLeave: (e) => {
-                        e.native.target.style.cursor = 'default';
-                    }
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            let label = context.label || '';
-                            let value = context.raw || 0;
-                            return ` ${label}: ${value} Batch`;
-                        }
-                    }
+                    labels: { usePointStyle: true, boxWidth: 8, padding: 20, font: { family: 'Inter', size: 11 } } 
                 }
             }
         }
@@ -193,7 +133,6 @@ function updateCharts(res) {
 
     if (chartPrioritasInstance) chartPrioritasInstance.destroy();
     const ctxPrioritas = document.getElementById('chartPrioritas').getContext('2d');
-    
     const labels = res.prioritasSingkat.map(item => item.komoditas);
     const weights = res.prioritasSingkat.map(item => item.berat);
 
@@ -201,179 +140,113 @@ function updateCharts(res) {
         type: 'bar',
         data: {
             labels: labels,
-            datasets: [{
-                label: 'Berat',
-                data: weights,
-                backgroundColor: '#059669',
-                borderRadius: 6,
-                barThickness: 30
-            }]
+            datasets: [{ label: 'Berat', data: weights, backgroundColor: '#059669', borderRadius: 6, barThickness: 30 }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return ` Berat: ${context.raw} Kg`;
-                        }
-                    }
-                }
-            },
+            plugins: { legend: { display: false } },
             scales: {
-                y: { 
-                    beginAtZero: true,
-                    ticks: { 
-                        stepSize: 20, 
-                        font: { family: 'Inter', size: 10 } 
-                    },
-                    grid: { display: false }
-                },
-                x: {
-                    grid: { display: false },
-                    ticks: { font: { family: 'Inter', size: 11, weight: 'bold' } }
-                }
+                y: { beginAtZero: true, grid: { display: false } },
+                x: { grid: { display: false }, ticks: { font: { family: 'Inter', size: 11, weight: 'bold' } } }
             }
         }
     });
 }
 
 function loadKomoditasOptions() {
-    $.getJSON('/api/komoditas', function (data) {
-        let optionsHtml = '';
-        let tableRows = '';
+    const data = [
+        { id: 1, nama: 'Bayam', umur: 3 },
+        { id: 2, nama: 'Kangkung', umur: 3 },
+        { id: 3, nama: 'Stroberi', umur: 4 },
+        { id: 4, nama: 'Jagung Manis', umur: 5 },
+        { id: 5, nama: 'Pisang', umur: 6 },
+        { id: 6, nama: 'Tomat', umur: 7 },
+        { id: 7, nama: 'Cabai', umur: 10 }
+    ];
 
-        for (let i = 0; i < data.length; i++) {
-            let k = data[i];
-            optionsHtml += `<li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" onclick="selectKomoditas(${k.id}, '${k.nama} (${k.umur} Hari)')">${k.nama} (${k.umur} Hari)</li>`;
-            
-            tableRows += `<tr class="hover:bg-slate-50 transition-colors">
-                <td class="px-6 py-4 font-bold text-slate-800 text-center">${k.nama}</td>
-                <td class="px-6 py-4 text-slate-600 font-medium text-center">${k.umur} Hari</td>
-            </tr>`;
-        }
-
-        $('#dd-komoditas-list').html(optionsHtml);
-        $('#tabel-komoditas').html(tableRows);
-    });
+    let optionsHtml = '';
+    let tableRows = '';
+    for (let i = 0; i < data.length; i++) {
+        let k = data[i];
+        optionsHtml += `<li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" onclick="selectKomoditas(${k.id}, '${k.nama} (${k.umur} Hari)')">${k.nama} (${k.umur} Hari)</li>`;
+        tableRows += `<tr class="hover:bg-slate-50 transition-colors">
+            <td class="px-6 py-4 font-bold text-slate-800 text-center">${k.nama}</td>
+            <td class="px-6 py-4 text-slate-600 font-medium text-center">${k.umur} Hari</td>
+        </tr>`;
+    }
+    $('#dd-komoditas-list').html(optionsHtml);
+    $('#tabel-komoditas').html(tableRows);
 }
 
 function loadPrioritas() {
-    $.getJSON('/api/prioritas', function (data) {
-        let rows = '';
-        if (data.length === 0) {
-            rows = emptyState("Seluruh komoditas telah terdistribusi dengan baik.");
-        } else {
-            data.forEach(function (item) {
-                rows += `<tr class="hover:bg-slate-50 transition-colors">
-                    <td class="px-6 py-4 font-bold text-slate-800 text-center">${item.komoditas}</td>
-                    <td class="px-6 py-4 text-slate-600 font-medium text-center">${item.lahan}</td>
-                    <td class="px-6 py-4 text-slate-600 text-center">${item.berat} Kg</td>
-                    <td class="px-6 py-4 text-slate-600 text-center">${formatDate(item.tanggalPanen)}</td>
-                    <td class="px-6 py-4 font-bold text-slate-800 text-center">${item.sisaUmur} Hari</td>
-                    <td class="px-6 py-4 text-center">${badgeStatus(item.status)}</td>
-                    <td class="px-6 py-4 text-center">
-                        <button class="bg-emerald-600 text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-emerald-700 shadow-sm transition-transform active:scale-95" onclick="kirimBarang(${item.idBatch}, '${item.komoditas.replace(/'/g, "\\'")}')">Kirim</button>
-                    </td>
-                </tr>`;
-            });
-        }
-        $('#tabel-prioritas').html(rows);
+    const data = [
+        { idBatch: 1, komoditas: 'Bayam', lahan: 'Lahan A', berat: 50, tanggalPanen: '2026-11-01', sisaUmur: 1, status: 'Kritis' },
+        { idBatch: 2, komoditas: 'Tomat', lahan: 'Lahan B', berat: 120, tanggalPanen: '2026-11-02', sisaUmur: 3, status: 'Cukup' },
+        { idBatch: 3, komoditas: 'Cabai', lahan: 'Greenhouse 1', berat: 80, tanggalPanen: '2026-10-30', sisaUmur: 6, status: 'Segar' }
+    ];
+
+    let rows = '';
+    data.forEach(function (item) {
+        rows += `<tr class="hover:bg-slate-50 transition-colors">
+            <td class="px-6 py-4 font-bold text-slate-800 text-center">${item.komoditas}</td>
+            <td class="px-6 py-4 text-slate-600 font-medium text-center">${item.lahan}</td>
+            <td class="px-6 py-4 text-slate-600 text-center">${item.berat} Kg</td>
+            <td class="px-6 py-4 text-slate-600 text-center">${formatDate(item.tanggalPanen)}</td>
+            <td class="px-6 py-4 font-bold text-slate-800 text-center">${item.sisaUmur} Hari</td>
+            <td class="px-6 py-4 text-center">${badgeStatus(item.status)}</td>
+            <td class="px-6 py-4 text-center">
+                <button class="bg-emerald-600 text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-emerald-700 shadow-sm transition-transform active:scale-95" onclick="alert('Fitur pengiriman tidak tersedia di versi statis')">Kirim</button>
+            </td>
+        </tr>`;
     });
-}
-
-function kirimBarang(idBatch, namaKomoditas) {
-    $('#modal-id-batch').val(idBatch);
-    $('#modal-komoditas-teks').text('Kirim ' + namaKomoditas + ' ke:');
-    $('#modal-tujuan').val('');
-    $('#modal-kirim').removeClass('hidden');
-    setTimeout(function() { $('#modal-tujuan').focus(); }, 100);
-}
-
-function tutupModal() {
-    $('#modal-kirim').addClass('hidden');
-}
-
-function konfirmasiKirim() {
-    const idBatch = $('#modal-id-batch').val();
-    const tujuan = $('#modal-tujuan').val().trim();
-
-    if (!tujuan) {
-        alert("Lokasi tujuan wajib diisi!");
-        $('#modal-tujuan').focus();
-        return;
-    }
-
-    const tanggalKirim = new Date().toISOString().split('T')[0];
-
-    $.ajax({
-        url: '/api/kirim',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            idBatch: parseInt(idBatch),
-            tujuan: tujuan,
-            tanggalKirim: tanggalKirim
-        }),
-        success: function () {
-            tutupModal();
-            loadPrioritas();
-            loadDashboard();
-        },
-        error: function (xhr) {
-            alert('Gagal: ' + (xhr.responseJSON ? xhr.responseJSON.pesan : 'Terjadi kesalahan sistem'));
-        }
-    });
+    $('#tabel-prioritas').html(rows);
 }
 
 function loadRiwayat() {
-    const bulan = $('#filter-bulan').val();
-    const status = $('#filter-status').val();
-    const params = {};
-    if (bulan) params.bulan = parseInt(bulan);
-    if (status) params.status = status;
+    const res = {
+        totalBatchTerkirim: 31,
+        diselamatkanKritis: 17,
+        diselamatkanCukup: 8,
+        diselamatkanSegar: 6,
+        riwayat: [
+            { komoditas: 'Tomat', lahan: 'Lahan B', berat: 110, tanggalKirim: '2026-11-03', tujuan: 'Supermarket Segar', statusKesegaran: 'Kritis' },
+            { komoditas: 'Cabai', lahan: 'Lahan A', berat: 70, tanggalKirim: '2026-11-02', tujuan: 'Pasar Induk', statusKesegaran: 'Cukup' }
+        ]
+    };
 
-    $.getJSON('/api/riwayat', params, function (res) {
-        const rekapHtml = `
-            <div class="bg-white border border-slate-100 shadow-sm p-5 rounded-2xl relative overflow-hidden">
-                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Total Terkirim</p>
-                <p class="text-2xl font-extrabold text-slate-800">${res.totalBatchTerkirim} <span class="text-sm font-medium text-slate-500">Batch</span></p>
-            </div>
-            <div class="bg-red-50 border border-red-100 shadow-sm p-5 rounded-2xl relative overflow-hidden">
-                <p class="text-xs font-bold text-red-500 uppercase tracking-wider mb-1">Kritis Diselamatkan</p>
-                <p class="text-2xl font-extrabold text-red-700">${res.diselamatkanKritis}</p>
-            </div>
-            <div class="bg-amber-50 border border-amber-100 shadow-sm p-5 rounded-2xl relative overflow-hidden">
-                <p class="text-xs font-bold text-amber-600 uppercase tracking-wider mb-1">Status Cukup</p>
-                <p class="text-2xl font-extrabold text-amber-700">${res.diselamatkanCukup}</p>
-            </div>
-            <div class="bg-emerald-50 border border-emerald-100 shadow-sm p-5 rounded-2xl relative overflow-hidden">
-                <p class="text-xs font-bold text-emerald-600 uppercase tracking-wider mb-1">Status Segar</p>
-                <p class="text-2xl font-extrabold text-emerald-700">${res.diselamatkanSegar}</p>
-            </div>
-        `;
-        $('#rekap-riwayat-container').html(rekapHtml);
-        let rows = '';
-        if (res.riwayat.length === 0) {
-            rows = `<tr><td colspan="6" class="px-6 py-12 text-center bg-slate-50/50">
-                <p class="text-slate-500 text-sm font-medium">Belum ada riwayat pengiriman untuk filter ini.</p>
-            </td></tr>`;
-        } else {
-            res.riwayat.forEach(function (item) {
-                rows += `<tr class="hover:bg-slate-50 transition-colors">
-                    <td class="px-6 py-4 font-bold text-slate-800 text-center">${item.komoditas}</td>
-                    <td class="px-6 py-4 text-slate-600 font-medium text-center">${item.lahan}</td>
-                    <td class="px-6 py-4 text-slate-600 text-center">${item.berat} Kg</td>
-                    <td class="px-6 py-4 text-slate-600 text-center">${formatDate(item.tanggalKirim)}</td>
-                    <td class="px-6 py-4 font-medium text-slate-700 text-center">${item.tujuan}</td>
-                    <td class="px-6 py-4 text-center">${badgeStatus(item.statusKesegaran)}</td>
-                </tr>`;
-            });
-        }
-        $('#tabel-riwayat').html(rows);
+    const rekapHtml = `
+        <div class="bg-white border border-slate-100 shadow-sm p-5 rounded-2xl relative overflow-hidden">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Total Terkirim</p>
+            <p class="text-2xl font-extrabold text-slate-800">${res.totalBatchTerkirim} <span class="text-sm font-medium text-slate-500">Batch</span></p>
+        </div>
+        <div class="bg-red-50 border border-red-100 shadow-sm p-5 rounded-2xl relative overflow-hidden">
+            <p class="text-xs font-bold text-red-500 uppercase tracking-wider mb-1">Kritis Diselamatkan</p>
+            <p class="text-2xl font-extrabold text-red-700">${res.diselamatkanKritis}</p>
+        </div>
+        <div class="bg-amber-50 border border-amber-100 shadow-sm p-5 rounded-2xl relative overflow-hidden">
+            <p class="text-xs font-bold text-amber-600 uppercase tracking-wider mb-1">Status Cukup</p>
+            <p class="text-2xl font-extrabold text-amber-700">${res.diselamatkanCukup}</p>
+        </div>
+        <div class="bg-emerald-50 border border-emerald-100 shadow-sm p-5 rounded-2xl relative overflow-hidden">
+            <p class="text-xs font-bold text-emerald-600 uppercase tracking-wider mb-1">Status Segar</p>
+            <p class="text-2xl font-extrabold text-emerald-700">${res.diselamatkanSegar}</p>
+        </div>
+    `;
+    $('#rekap-riwayat-container').html(rekapHtml);
+
+    let rows = '';
+    res.riwayat.forEach(function (item) {
+        rows += `<tr class="hover:bg-slate-50 transition-colors">
+            <td class="px-6 py-4 font-bold text-slate-800 text-center">${item.komoditas}</td>
+            <td class="px-6 py-4 text-slate-600 font-medium text-center">${item.lahan}</td>
+            <td class="px-6 py-4 text-slate-600 text-center">${item.berat} Kg</td>
+            <td class="px-6 py-4 text-slate-600 text-center">${formatDate(item.tanggalKirim)}</td>
+            <td class="px-6 py-4 font-medium text-slate-700 text-center">${item.tujuan}</td>
+            <td class="px-6 py-4 text-center">${badgeStatus(item.statusKesegaran)}</td>
+        </tr>`;
     });
+    $('#tabel-riwayat').html(rows);
 }
 
 function toggleKomoditasDropdown() {
@@ -391,7 +264,6 @@ function toggleDropdown(id) {
     document.getElementById('dd-bulan').classList.add('hidden');
     document.getElementById('dd-status').classList.add('hidden');
     document.getElementById('dd-komoditas').classList.add('hidden');
-    
     const dropdown = document.getElementById(id);
     dropdown.classList.toggle('hidden');
 }
@@ -410,13 +282,7 @@ function selectDropdown(tipe, value, text) {
 }
 
 window.onclick = function(event) {
-    if (!event.target.closest('#dd-bulan-container')) {
-        document.getElementById('dd-bulan').classList.add('hidden');
-    }
-    if (!event.target.closest('#dd-status-container')) {
-        document.getElementById('dd-status').classList.add('hidden');
-    }
-    if (!event.target.closest('#dd-komoditas-container')) {
-        document.getElementById('dd-komoditas').classList.add('hidden');
-    }
+    if (!event.target.closest('#dd-bulan-container')) document.getElementById('dd-bulan').classList.add('hidden');
+    if (!event.target.closest('#dd-status-container')) document.getElementById('dd-status').classList.add('hidden');
+    if (!event.target.closest('#dd-komoditas-container')) document.getElementById('dd-komoditas').classList.add('hidden');
 }
