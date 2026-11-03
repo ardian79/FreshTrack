@@ -9,5 +9,5 @@ object DbConfig {
 
   val url: String = props.getProperty("db.url", "jdbc:postgresql://localhost:5432/freshtrack_db").replace("\"", "")
   val user: String = props.getProperty("db.user", "postgres").replace("\"", "")
-  val password: String = props.getProperty("db.password", "Lazuaros_7").replace("\"", "")
+  val password: String = props.getProperty("db.password", "password_kamu").replace("\"", "")
 }
