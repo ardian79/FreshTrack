@@ -110,7 +110,7 @@ function formatDate(dateString) {
 
 function loadDashboard() {
     $.getJSON('/api/dashboard', function (res) {
-        $('#dash-total-berat').text(res.totalBeratGudang);
+        $('#dash-total-berat').text(parseFloat(res.totalBeratGudang || 0).toFixed(1));
         $('#dash-total-batch').text(res.totalBatchGudang);
         
         $('#dash-rekap-segar').text(res.rekapSegar);
@@ -125,7 +125,7 @@ function loadDashboard() {
         }
 
         let rows = '';
-        if (res.prioritasSingkat.length === 0) {
+        if (!res.prioritasSingkat || res.prioritasSingkat.length === 0) {
             rows = emptyState("Gudang kosong, belum ada batch aktif.");
         } else {
             res.prioritasSingkat.forEach(function (b) {
@@ -170,21 +170,6 @@ function updateCharts(res) {
                         boxWidth: 8, 
                         padding: 20, 
                         font: { family: 'Inter', size: 11 } 
-                    },
-                    onHover: (e) => {
-                        e.native.target.style.cursor = 'pointer';
-                    },
-                    onLeave: (e) => {
-                        e.native.target.style.cursor = 'default';
-                    }
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            let label = context.label || '';
-                            let value = context.raw || 0;
-                            return ` ${label}: ${value} Batch`;
-                        }
                     }
                 }
             }
@@ -194,19 +179,47 @@ function updateCharts(res) {
     if (chartPrioritasInstance) chartPrioritasInstance.destroy();
     const ctxPrioritas = document.getElementById('chartPrioritas').getContext('2d');
     
-    const labels = res.prioritasSingkat.map(item => item.komoditas);
-    const weights = res.prioritasSingkat.map(item => item.berat);
+    const volumeData = res.volumeKomoditas || [];
+    const formatLabel = (label) => {
+        if (label.length <= 15) return label;
+        const words = label.split(' ');
+        let lines = [];
+        let currentLine = words[0];
+        for (let i = 1; i < words.length; i++) {
+            if (currentLine.length + words[i].length + 1 <= 15) {
+                currentLine += ' ' + words[i];
+            } else {
+                lines.push(currentLine);
+                currentLine = words[i];
+            }
+        }
+        lines.push(currentLine);
+        return lines;
+    };
+
+    const rawLabels = volumeData.map(item => item.komoditas);
+    const labels = rawLabels.map(formatLabel);
+    const weights = volumeData.map(item => item.totalBerat);
+
+    const canvasWrapper = document.getElementById('chartPrioritasWrapper');
+    const canvasEl = document.getElementById('chartPrioritas');
+    
+    if (canvasWrapper && canvasEl) {
+        const finalWidth = Math.max(rawLabels.length * 110, 600);
+        canvasWrapper.style.width = finalWidth + 'px';
+        canvasEl.style.width = finalWidth + 'px';
+    }
 
     chartPrioritasInstance = new Chart(ctxPrioritas, {
         type: 'bar',
         data: {
             labels: labels,
             datasets: [{
-                label: 'Berat',
+                label: 'Total Berat (Kg)',
                 data: weights,
                 backgroundColor: '#059669',
                 borderRadius: 6,
-                barThickness: 30
+                barThickness: 32
             }]
         },
         options: {
@@ -216,8 +229,11 @@ function updateCharts(res) {
                 legend: { display: false },
                 tooltip: {
                     callbacks: {
+                        title: function(context) {
+                            return rawLabels[context[0].dataIndex];
+                        },
                         label: function(context) {
-                            return ` Berat: ${context.raw} Kg`;
+                            return ` Total: ${context.raw.toFixed(1)} Kg`;
                         }
                     }
                 }
@@ -225,15 +241,17 @@ function updateCharts(res) {
             scales: {
                 y: { 
                     beginAtZero: true,
-                    ticks: { 
-                        stepSize: 20, 
-                        font: { family: 'Inter', size: 10 } 
-                    },
                     grid: { display: false }
                 },
                 x: {
                     grid: { display: false },
-                    ticks: { font: { family: 'Inter', size: 11, weight: 'bold' } }
+                    ticks: { 
+                        font: { family: 'Inter', size: 11, weight: 'bold' },
+                        maxRotation: 0,
+                        minRotation: 0,
+                        autoSkip: false,
+                        padding: 8
+                    }
                 }
             }
         }
@@ -337,21 +355,25 @@ function loadRiwayat() {
 
     $.getJSON('/api/riwayat', params, function (res) {
         const rekapHtml = `
-            <div class="bg-white border border-slate-100 shadow-sm p-5 rounded-2xl relative overflow-hidden">
-                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Total Terkirim</p>
+            <div class="bg-white border border-slate-100 shadow-sm p-4 rounded-2xl relative overflow-hidden flex flex-col justify-between h-32">
+                <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Total Terkirim</p>
                 <p class="text-2xl font-extrabold text-slate-800">${res.totalBatchTerkirim} <span class="text-sm font-medium text-slate-500">Batch</span></p>
             </div>
-            <div class="bg-red-50 border border-red-100 shadow-sm p-5 rounded-2xl relative overflow-hidden">
-                <p class="text-xs font-bold text-red-500 uppercase tracking-wider mb-1">Kritis Diselamatkan</p>
-                <p class="text-2xl font-extrabold text-red-700">${res.diselamatkanKritis}</p>
+            <div class="bg-red-50 border border-red-100 shadow-sm p-4 rounded-2xl relative overflow-hidden flex flex-col justify-between h-32">
+                <p class="text-[11px] font-bold text-red-500 uppercase tracking-wider mb-1">Kritis Terselamatkan</p>
+                <p class="text-2xl font-extrabold text-red-700">${res.kritisTerselamatkan || res.diselamatkanKritis || 0}</p>
             </div>
-            <div class="bg-amber-50 border border-amber-100 shadow-sm p-5 rounded-2xl relative overflow-hidden">
-                <p class="text-xs font-bold text-amber-600 uppercase tracking-wider mb-1">Status Cukup</p>
-                <p class="text-2xl font-extrabold text-amber-700">${res.diselamatkanCukup}</p>
+            <div class="bg-sky-50 border border-sky-100 shadow-sm p-4 rounded-2xl relative overflow-hidden flex flex-col justify-between h-32">
+                <p class="text-[11px] font-bold text-sky-600 uppercase tracking-wider mb-1">Kritis Tidak Terselamatkan</p>
+                <p class="text-2xl font-extrabold text-sky-700">${res.kritisTidakTerselamatkan || res.tidakTerselamatkan || 0}</p>
             </div>
-            <div class="bg-emerald-50 border border-emerald-100 shadow-sm p-5 rounded-2xl relative overflow-hidden">
-                <p class="text-xs font-bold text-emerald-600 uppercase tracking-wider mb-1">Status Segar</p>
-                <p class="text-2xl font-extrabold text-emerald-700">${res.diselamatkanSegar}</p>
+            <div class="bg-amber-50 border border-amber-100 shadow-sm p-4 rounded-2xl relative overflow-hidden flex flex-col justify-between h-32">
+                <p class="text-[11px] font-bold text-amber-600 uppercase tracking-wider mb-1">Status Cukup</p>
+                <p class="text-2xl font-extrabold text-amber-700">${res.diselamatkanCukup || 0}</p>
+            </div>
+            <div class="bg-emerald-50 border border-emerald-100 shadow-sm p-4 rounded-2xl relative overflow-hidden flex flex-col justify-between h-32">
+                <p class="text-[11px] font-bold text-emerald-600 uppercase tracking-wider mb-1">Status Segar</p>
+                <p class="text-2xl font-extrabold text-emerald-700">${res.diselamatkanSegar || 0}</p>
             </div>
         `;
         $('#rekap-riwayat-container').html(rekapHtml);

@@ -41,7 +41,6 @@ object PanenService {
     val jumlahKritis = Logic.filterBatchKritis(aktif).size
     val rekap = Logic.rekapStatus(aktif)
     val top3 = Logic.ambilPrioritasUtama(aktif, 3)
-    val tertuaOpt = Logic.cariBatchTertua(aktif)
 
     val top3Json = top3.flatMap { b =>
       mapPanen.get(b.idPanen).map { p =>
@@ -56,6 +55,16 @@ object PanenService {
       }
     }
 
+    val semuaKomoditasList = PanenRepo.ambilSemuaKomoditas().sortBy(_.nama)
+    val beratPerKomoditas = aktif
+      .flatMap(b => mapPanen.get(b.idPanen).map(p => (p.komoditasId, p.beratKg)))
+      .groupMapReduce(_._1)(_._2)(_ + _)
+
+    val volumeKomoditasJson = semuaKomoditasList.map { k =>
+      val totalB = beratPerKomoditas.getOrElse(k.id, 0.0)
+      ujson.Obj("komoditas" -> k.nama, "totalBerat" -> totalB)
+    }
+
     ujson.Obj(
       "totalBatchGudang" -> aktif.size,
       "totalBeratGudang" -> totalBerat,
@@ -63,8 +72,8 @@ object PanenService {
       "rekapSegar" -> rekap.getOrElse(StatusKesegaran.Segar, 0),
       "rekapCukup" -> rekap.getOrElse(StatusKesegaran.Cukup, 0),
       "rekapKritis" -> rekap.getOrElse(StatusKesegaran.Kritis, 0),
-      "batchTertuaId" -> tertuaOpt.map(_.id).getOrElse(0),
-      "prioritasSingkat" -> ujson.Arr.from(top3Json)
+      "prioritasSingkat" -> ujson.Arr.from(top3Json),
+      "volumeKomoditas" -> ujson.Arr.from(volumeKomoditasJson)
     )
   }
 
@@ -88,12 +97,18 @@ object PanenService {
   }
 
   def eksekusiPengiriman(idBatch: Int, tujuan: String, tanggalKirim: LocalDate): Either[String, Batch] = {
-    val (semuaBatch, _) = sinkronisasiBatchHariIni()
+    val (semuaBatch, mapPanen) = sinkronisasiBatchHariIni()
     semuaBatch.find(_.id == idBatch) match {
       case None => Left("Batch tidak ditemukan.")
       case Some(batch) =>
         Logic.validasiPengiriman(batch).flatMap { validBatch =>
-          val berhasil = PanenRepo.catatPengiriman(validBatch.id, tanggalKirim, tujuan)
+          val panenOpt = mapPanen.get(validBatch.idPanen)
+          val statusKirim = panenOpt.map { p =>
+            val sisa = Logic.hitungSisaUmur(p.tanggalPanen, p.umurSimpanHari, tanggalKirim)
+            Logic.tentukanStatus(sisa).toString
+          }.getOrElse(validBatch.status.toString)
+
+          val berhasil = PanenRepo.catatPengiriman(validBatch.id, tanggalKirim, tujuan, statusKirim)
           if berhasil then Right(validBatch) else Left("Gagal menyimpan pengiriman.")
         }
     }
@@ -107,20 +122,28 @@ object PanenService {
 
     val riwayatTerfilter = hasilTelusur.flatMap { kirim =>
       mapBatch.get(kirim.idBatch).flatMap { b =>
-        val cocokStatus = filterStatus match {
-          case None | Some("") => true
-          case Some(st)        => b.status.toString.equalsIgnoreCase(st)
-        }
-        if cocokStatus then mapPanen.get(b.idPanen).map(p => (kirim, b, p))
-        else None
+        mapPanen.get(b.idPanen).map { p =>
+          val sisaKirim = Logic.hitungSisaUmur(p.tanggalPanen, p.umurSimpanHari, kirim.tanggalKirim)
+          val statusAktif = StatusKesegaran.values.find(_.toString.equalsIgnoreCase(kirim.statusKirim)).getOrElse(Logic.tentukanStatus(sisaKirim))
+          
+          val cocokStatus = filterStatus match {
+            case None | Some("") => true
+            case Some(st)        => statusAktif.toString.equalsIgnoreCase(st.trim)
+          }
+          if cocokStatus then Some((kirim, b, p, statusAktif, sisaKirim)) else None
+        }.flatten
       }
     }
 
     val batchTerkirim = riwayatTerfilter.map(_._2)
     val totalBeratTerkirim = Logic.hitungTotalBerat(batchTerkirim, mapPanen)
-    val rekapTerkirim = Logic.rekapStatus(batchTerkirim)
 
-    val jsonRiwayat = riwayatTerfilter.map { (kirim, b, p) =>
+    val kritisTerselamatkan = riwayatTerfilter.count { case (_, _, _, stat, sisa) => stat == StatusKesegaran.Kritis && sisa > 0 }
+    val kritisTidakTerselamatkan = riwayatTerfilter.count { case (_, _, _, stat, sisa) => stat == StatusKesegaran.Kritis && sisa <= 0 }
+    val cukup = riwayatTerfilter.count { case (_, _, _, stat, _) => stat == StatusKesegaran.Cukup }
+    val segar = riwayatTerfilter.count { case (_, _, _, stat, _) => stat == StatusKesegaran.Segar }
+
+    val jsonRiwayat = riwayatTerfilter.map { case (kirim, b, p, stat, _) =>
       ujson.Obj(
         "idPengiriman" -> kirim.id,
         "idBatch" -> b.id,
@@ -129,16 +152,17 @@ object PanenService {
         "berat" -> p.beratKg,
         "tanggalKirim" -> kirim.tanggalKirim.toString,
         "tujuan" -> kirim.tujuan,
-        "statusKesegaran" -> b.status.toString
+        "statusKesegaran" -> stat.toString
       )
     }
 
     ujson.Obj(
       "totalBatchTerkirim" -> batchTerkirim.size,
       "totalBeratTerkirim" -> totalBeratTerkirim,
-      "diselamatkanKritis" -> rekapTerkirim.getOrElse(StatusKesegaran.Kritis, 0),
-      "diselamatkanCukup" -> rekapTerkirim.getOrElse(StatusKesegaran.Cukup, 0),
-      "diselamatkanSegar" -> rekapTerkirim.getOrElse(StatusKesegaran.Segar, 0),
+      "kritisTerselamatkan" -> kritisTerselamatkan,
+      "kritisTidakTerselamatkan" -> kritisTidakTerselamatkan,
+      "diselamatkanCukup" -> cukup,
+      "diselamatkanSegar" -> segar,
       "riwayat" -> ujson.Arr.from(jsonRiwayat)
     )
   }

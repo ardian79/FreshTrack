@@ -25,8 +25,7 @@ object Logic {
 
   def hitungSisaUmur(tanggalPanen: LocalDate, umurSimpan: Int, hariIni: LocalDate): Int = {
     val selisih = ChronoUnit.DAYS.between(tanggalPanen, hariIni).toInt
-    val sisa = umurSimpan - selisih
-    if (sisa < 0) 0 else sisa
+    umurSimpan - selisih
   }
 
   def tentukanStatus(sisaUmur: Int): StatusKesegaran =
@@ -86,7 +85,6 @@ object Logic {
   def ambilPrioritasUtama(batches: List[Batch], jumlah: Int): List[Batch] =
     batches
       .filter(b => !b.sudahDikirim)
-      .map(b => b.copy(sisaUmurHari = if b.sisaUmurHari < 0 then 0 else b.sisaUmurHari))
       .sortBy(b => b.sisaUmurHari)
       .take(jumlah)
 

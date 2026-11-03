@@ -121,7 +121,7 @@ object PanenRepo {
     hasil
   }
 
-  def catatPengiriman(idBatch: Int, tanggalKirim: LocalDate, tujuan: String): Boolean = {
+  def catatPengiriman(idBatch: Int, tanggalKirim: LocalDate, tujuan: String, statusKesegaran: String): Boolean = {
     val conn = getConn()
     try {
       val sqlUpdate = "UPDATE batch SET sudah_dikirim = true WHERE id = ? AND sudah_dikirim = false"
@@ -130,11 +130,12 @@ object PanenRepo {
       val updated = pstmtUpdate.executeUpdate()
 
       if updated > 0 then {
-        val sqlInsert = "INSERT INTO pengiriman (batch_id, tanggal_kirim, tujuan, status_kirim) VALUES (?, ?, ?, 'Terkirim')"
+        val sqlInsert = "INSERT INTO pengiriman (batch_id, tanggal_kirim, tujuan, status_kirim) VALUES (?, ?, ?, ?)"
         val pstmtInsert = conn.prepareStatement(sqlInsert)
         pstmtInsert.setInt(1, idBatch)
         pstmtInsert.setDate(2, java.sql.Date.valueOf(tanggalKirim))
         pstmtInsert.setString(3, tujuan.trim)
+        pstmtInsert.setString(4, statusKesegaran)
         pstmtInsert.executeUpdate()
         true
       } else {
@@ -148,9 +149,10 @@ object PanenRepo {
   def ambilSemuaPengiriman(): List[Pengiriman] = {
     var hasil = List.empty[Pengiriman]
     val conn = getConn()
+
     try {
       val stmt = conn.createStatement()
-      val rs = stmt.executeQuery("SELECT id, batch_id, tanggal_kirim, tujuan, status_kirim FROM pengiriman ORDER BY id DESC")
+      val rs = stmt.executeQuery("SELECT id, batch_id, tanggal_kirim, tujuan, status_kirim FROM pengiriman ORDER BY tanggal_kirim DESC, id DESC")
       while rs.next() do {
         hasil = hasil :+ Pengiriman(
           rs.getInt("id"),
