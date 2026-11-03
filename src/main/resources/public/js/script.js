@@ -480,8 +480,7 @@ function editPrioritas(idPanen, lahan, berat, tanggalPanen) {
     $('#edit-lahan').val(lahan);
     $('#edit-berat').val(berat);
     
-    const today = new Date().toISOString().split('T')[0];
-    $('#edit-tanggal-panen').val(today); 
+    $('#edit-tanggal-panen').val(tanggalPanen);
     
     $('#modal-edit-prioritas').removeClass('hidden');
 }
