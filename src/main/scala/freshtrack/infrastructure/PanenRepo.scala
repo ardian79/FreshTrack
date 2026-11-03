@@ -6,8 +6,10 @@ import freshtrack.domain.*
 
 object PanenRepo {
 
-  private def getConn() =
+  private def getConn() = {
+    Class.forName("org.postgresql.Driver")
     DriverManager.getConnection(DbConfig.url, DbConfig.user, DbConfig.password)
+  }
 
   def ambilSemuaKomoditas(): List[Komoditas] = {
     var hasil = List.empty[Komoditas]

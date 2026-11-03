@@ -3,7 +3,7 @@ name := "FreshTrack"
 version := "0.1.0"
 
 libraryDependencies ++= Seq(
-  "com.lihaoyi" %% "cask" % "0.10.2",
-  "ch.qos.logback" % "logback-classic" % "1.4.14",
-  "org.scalameta" %% "munit" % "1.0.0" % Test
+  "com.lihaoyi" %% "cask" % "0.9.1",
+  "com.lihaoyi" %% "ujson" % "3.1.3",
+  "org.postgresql" % "postgresql" % "42.6.0"
 )

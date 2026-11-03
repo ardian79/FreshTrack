@@ -10,13 +10,20 @@ $(document).ready(function () {
 
     $('#form-panen').submit(function (e) {
         e.preventDefault();
+        
+        const komoditasId = $('#komoditas').val();
+        if (!komoditasId) {
+            alert('Silakan pilih komoditas terlebih dahulu.');
+            return;
+        }
+
         const beratVal = parseFloat($('#berat').val());
         if (isNaN(beratVal) || beratVal <= 0) {
             alert('Berat harus lebih dari 0 Kg.');
             return;
         }
         const data = {
-            komoditasId: parseInt($('#komoditas').val()),
+            komoditasId: parseInt(komoditasId),
             lahan: $('#lahan').val(),
             berat: beratVal,
             tanggal: $('#tanggal-panen').val()
@@ -28,6 +35,7 @@ $(document).ready(function () {
             data: JSON.stringify(data),
             success: function () {
                 $('#form-panen')[0].reset();
+                document.getElementById('dd-komoditas-text').innerText = '-- Pilih Komoditas --';
                 $('#tanggal-panen').val(today);
                 showPage('prioritas');
             }
@@ -234,19 +242,20 @@ function updateCharts(res) {
 
 function loadKomoditasOptions() {
     $.getJSON('/api/komoditas', function (data) {
-        let options = '<option value="" disabled selected>-- Pilih Komoditas --</option>';
+        let optionsHtml = '';
         let tableRows = '';
 
         for (let i = 0; i < data.length; i++) {
             let k = data[i];
-            options += `<option value="${k.id}">${k.nama} (${k.umur} Hari)</option>`;
+            optionsHtml += `<li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" onclick="selectKomoditas(${k.id}, '${k.nama} (${k.umur} Hari)')">${k.nama} (${k.umur} Hari)</li>`;
+            
             tableRows += `<tr class="hover:bg-slate-50 transition-colors">
                 <td class="px-6 py-4 font-bold text-slate-800 text-center">${k.nama}</td>
                 <td class="px-6 py-4 text-slate-600 font-medium text-center">${k.umur} Hari</td>
             </tr>`;
         }
 
-        $('#komoditas').html(options);
+        $('#dd-komoditas-list').html(optionsHtml);
         $('#tabel-komoditas').html(tableRows);
     });
 }
@@ -346,7 +355,6 @@ function loadRiwayat() {
             </div>
         `;
         $('#rekap-riwayat-container').html(rekapHtml);
-
         let rows = '';
         if (res.riwayat.length === 0) {
             rows = `<tr><td colspan="6" class="px-6 py-12 text-center bg-slate-50/50">
@@ -366,4 +374,49 @@ function loadRiwayat() {
         }
         $('#tabel-riwayat').html(rows);
     });
+}
+
+function toggleKomoditasDropdown() {
+    const dropdown = document.getElementById('dd-komoditas');
+    dropdown.classList.toggle('hidden');
+}
+
+function selectKomoditas(id, text) {
+    document.getElementById('komoditas').value = id;
+    document.getElementById('dd-komoditas-text').innerText = text;
+    document.getElementById('dd-komoditas').classList.add('hidden');
+}
+
+function toggleDropdown(id) {
+    document.getElementById('dd-bulan').classList.add('hidden');
+    document.getElementById('dd-status').classList.add('hidden');
+    document.getElementById('dd-komoditas').classList.add('hidden');
+    
+    const dropdown = document.getElementById(id);
+    dropdown.classList.toggle('hidden');
+}
+
+function selectDropdown(tipe, value, text) {
+    if (tipe === 'bulan') {
+        document.getElementById('filter-bulan').value = value;
+        document.getElementById('dd-bulan-text').innerText = text;
+        document.getElementById('dd-bulan').classList.add('hidden');
+    } else if (tipe === 'status') {
+        document.getElementById('filter-status').value = value;
+        document.getElementById('dd-status-text').innerText = text;
+        document.getElementById('dd-status').classList.add('hidden');
+    }
+    loadRiwayat();
+}
+
+window.onclick = function(event) {
+    if (!event.target.closest('#dd-bulan-container')) {
+        document.getElementById('dd-bulan').classList.add('hidden');
+    }
+    if (!event.target.closest('#dd-status-container')) {
+        document.getElementById('dd-status').classList.add('hidden');
+    }
+    if (!event.target.closest('#dd-komoditas-container')) {
+        document.getElementById('dd-komoditas').classList.add('hidden');
+    }
 }

@@ -25,7 +25,8 @@ object Logic {
 
   def hitungSisaUmur(tanggalPanen: LocalDate, umurSimpan: Int, hariIni: LocalDate): Int = {
     val selisih = ChronoUnit.DAYS.between(tanggalPanen, hariIni).toInt
-    umurSimpan - selisih
+    val sisa = umurSimpan - selisih
+    if (sisa < 0) 0 else sisa
   }
 
   def tentukanStatus(sisaUmur: Int): StatusKesegaran =
@@ -35,8 +36,10 @@ object Logic {
     val fungsiHitungSisa: Int => Int = (batasUmur: Int) =>
       hitungSisaUmur(panen.tanggalPanen, batasUmur, hariIni)
 
+    val aturanTerpilih = aturanStatusMap.getOrElse(panen.komoditas, aturanStatusMap("Default"))
+
     val fungsiKomposisiStatus: Int => StatusKesegaran =
-      fungsiHitungSisa.andThen(tentukanStatus)
+      fungsiHitungSisa.andThen(aturanTerpilih)
 
     val sisaHari = fungsiHitungSisa(umurSimpan)
     val statusBatch = fungsiKomposisiStatus(umurSimpan)
