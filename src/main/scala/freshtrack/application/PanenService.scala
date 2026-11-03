@@ -20,11 +20,13 @@ object PanenService {
     (batchTersinkron, mapPanen)
   }
 
-  def tambahKomoditas(nama: String, umur: Int): Unit =
-    PanenRepo.simpanKomoditas(nama, umur)
+  def tambahKomoditas(nama: String, umur: Int): Unit = PanenRepo.simpanKomoditas(nama, umur)
+  
+  def updateKomoditas(id: Int, nama: String, umur: Int): Unit = PanenRepo.updateKomoditas(id, nama, umur)
+  
+  def hapusKomoditas(id: Int): Unit = PanenRepo.softDeleteKomoditas(id)
 
-  def ambilKomoditas(): List[Komoditas] =
-    PanenRepo.ambilSemuaKomoditas()
+  def ambilKomoditas(): List[Komoditas] = PanenRepo.ambilSemuaKomoditas()
 
   def tambahPanenBaru(komoditasId: Int, lahan: String, berat: Double, tanggal: LocalDate): Unit = {
     val komoditasOpt = PanenRepo.ambilSemuaKomoditas().find(_.id == komoditasId)
@@ -33,6 +35,10 @@ object PanenService {
     val status = Logic.tentukanStatus(sisa)
     PanenRepo.simpanPanenDanBatch(komoditasId, lahan, berat, tanggal, sisa, status)
   }
+
+  def hapusPanen(idPanen: Int): Unit = PanenRepo.hapusPanen(idPanen)
+  
+  def updatePanen(idPanen: Int, lahan: String, berat: Double): Unit = PanenRepo.updatePanen(idPanen, lahan, berat)
 
   def getDataDashboard(): ujson.Obj = {
     val (semuaBatch, mapPanen) = sinkronisasiBatchHariIni()
@@ -46,6 +52,7 @@ object PanenService {
       mapPanen.get(b.idPanen).map { p =>
         ujson.Obj(
           "idBatch" -> b.id,
+          "idPanen" -> p.id,
           "komoditas" -> p.komoditas,
           "lahan" -> p.lahan,
           "berat" -> p.beratKg,
@@ -55,14 +62,17 @@ object PanenService {
       }
     }
 
-    val semuaKomoditasList = PanenRepo.ambilSemuaKomoditas().sortBy(_.nama)
-    val beratPerKomoditas = aktif
-      .flatMap(b => mapPanen.get(b.idPanen).map(p => (p.komoditasId, p.beratKg)))
-      .groupMapReduce(_._1)(_._2)(_ + _)
+    val volumeKomoditasMap = aktif
+      .flatMap { b =>
+        mapPanen.get(b.idPanen).map(p => (p.komoditas, p.beratKg))
+      }
+      .groupBy(_._1)
+      .view.mapValues(_.map(_._2).sum).toMap
+      .toSeq
+      .sortBy(_._1)
 
-    val volumeKomoditasJson = semuaKomoditasList.map { k =>
-      val totalB = beratPerKomoditas.getOrElse(k.id, 0.0)
-      ujson.Obj("komoditas" -> k.nama, "totalBerat" -> totalB)
+    val volumeKomoditasJson = volumeKomoditasMap.map { case (nama, berat) =>
+      ujson.Obj("komoditas" -> nama, "totalBerat" -> berat)
     }
 
     ujson.Obj(
@@ -114,7 +124,7 @@ object PanenService {
     }
   }
 
-  def getRiwayatDanRekap(filterBulan: Option[Int], filterStatus: Option[String], filterTujuan: Option[String] = None): ujson.Obj = {
+  def getRiwayatDanRekap(filterBulan: Option[Int], filterStatus: Option[String], filterTujuan: Option[String]): ujson.Obj = {
     val (semuaBatch, mapPanen) = sinkronisasiBatchHariIni()
     val mapBatch = semuaBatch.map(b => b.id -> b).toMap
     val semuaPengiriman = PanenRepo.ambilSemuaPengiriman()
@@ -136,7 +146,7 @@ object PanenService {
             case Some(tj)        => kirim.tujuan.toLowerCase.contains(tj.trim.toLowerCase)
           }
 
-          if cocokStatus && cocokTujuan then Some((kirim, b, p, statusAktif, sisaKirim)) else None
+          if (cocokStatus && cocokTujuan) then Some((kirim, b, p, statusAktif, sisaKirim)) else None
         }.flatten
       }
     }
@@ -144,8 +154,7 @@ object PanenService {
     val batchTerkirim = riwayatTerfilter.map(_._2)
     val totalBeratTerkirim = Logic.hitungTotalBerat(batchTerkirim, mapPanen)
 
-    val kritisTerselamatkan = riwayatTerfilter.count { case (_, _, _, stat, sisa) => stat == StatusKesegaran.Kritis && sisa > 0 }
-    val kritisTidakTerselamatkan = riwayatTerfilter.count { case (_, _, _, stat, sisa) => stat == StatusKesegaran.Kritis && sisa <= 0 }
+    val kritis = riwayatTerfilter.count { case (_, _, _, stat, _) => stat == StatusKesegaran.Kritis }
     val cukup = riwayatTerfilter.count { case (_, _, _, stat, _) => stat == StatusKesegaran.Cukup }
     val segar = riwayatTerfilter.count { case (_, _, _, stat, _) => stat == StatusKesegaran.Segar }
 
@@ -165,8 +174,7 @@ object PanenService {
     ujson.Obj(
       "totalBatchTerkirim" -> batchTerkirim.size,
       "totalBeratTerkirim" -> totalBeratTerkirim,
-      "kritisTerselamatkan" -> kritisTerselamatkan,
-      "kritisTidakTerselamatkan" -> kritisTidakTerselamatkan,
+      "statusKritis" -> kritis,
       "diselamatkanCukup" -> cukup,
       "diselamatkanSegar" -> segar,
       "riwayat" -> ujson.Arr.from(jsonRiwayat)

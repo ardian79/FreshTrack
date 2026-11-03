@@ -8,7 +8,8 @@ enum StatusKesegaran:
 case class Komoditas(
     id: Int,
     nama: String,
-    umurSimpanHari: Int
+    umurSimpanHari: Int,
+    isDeleted: Boolean = false
 )
 
 case class Panen(

@@ -270,6 +270,22 @@ function loadKomoditasOptions() {
             tableRows += `<tr class="hover:bg-slate-50 transition-colors">
                 <td class="px-6 py-4 font-bold text-slate-800 text-center">${k.nama}</td>
                 <td class="px-6 py-4 text-slate-600 font-medium text-center">${k.umur} Hari</td>
+                <td class="px-6 py-4 text-center whitespace-nowrap">
+                    <!-- BAGIAN YANG DIUBAH DIMULAI DI SINI -->
+                    <div class="flex items-center justify-center gap-2">
+                        <button class="w-9 h-9 bg-amber-100 text-amber-700 hover:bg-amber-200 rounded-lg transition-all flex items-center justify-center" onclick="editKomoditas(${k.id}, '${k.nama}', ${k.umur})" title="Edit">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                            </svg>
+                        </button>
+                        <button class="w-9 h-9 bg-red-100 text-red-700 hover:bg-red-200 rounded-lg transition-all flex items-center justify-center" onclick="hapusKomoditas(${k.id})" title="Hapus">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- BAGIAN YANG DIUBAH SELESAI -->
+                </td>
             </tr>`;
         }
 
@@ -292,8 +308,24 @@ function loadPrioritas() {
                     <td class="px-6 py-4 text-slate-600 text-center">${formatDate(item.tanggalPanen)}</td>
                     <td class="px-6 py-4 font-bold text-slate-800 text-center">${item.sisaUmur} Hari</td>
                     <td class="px-6 py-4 text-center">${badgeStatus(item.status)}</td>
-                    <td class="px-6 py-4 text-center">
-                        <button class="bg-emerald-600 text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-emerald-700 shadow-sm transition-transform active:scale-95" onclick="kirimBarang(${item.idBatch}, '${item.komoditas.replace(/'/g, "\\'")}')">Kirim</button>
+                    <td class="px-6 py-4 text-center whitespace-nowrap">
+                        <!-- BAGIAN YANG DIUBAH DIMULAI DI SINI -->
+                        <div class="flex items-center justify-center gap-2">
+                            <button class="h-9 px-4 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg transition-all flex items-center justify-center whitespace-nowrap active:scale-95" onclick="kirimBarang(${item.idBatch}, '${item.komoditas.replace(/'/g, "\\'")}')">
+                                Kirim
+                            </button>
+                            <button class="w-9 h-9 bg-amber-100 text-amber-700 hover:bg-amber-200 rounded-lg transition-all flex items-center justify-center" onclick="editPrioritas(${item.idPanen}, '${item.lahan}', ${item.berat})" title="Edit">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                </svg>
+                            </button>
+                            <button class="w-9 h-9 bg-red-100 text-red-700 hover:bg-red-200 rounded-lg transition-all flex items-center justify-center" onclick="hapusPrioritas(${item.idPanen})" title="Hapus">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- BAGIAN YANG DIUBAH SELESAI -->
                     </td>
                 </tr>`;
             });
@@ -357,26 +389,22 @@ function loadRiwayat() {
     if (tujuan) params.tujuan = tujuan;
 
     $.getJSON('/api/riwayat', params, function (res) {
-        const rekapHtml = `
-            <div class="bg-white border border-slate-100 shadow-sm p-4 rounded-2xl relative overflow-hidden flex flex-col justify-between h-32">
-                <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Total Terkirim</p>
-                <p class="text-2xl font-extrabold text-slate-800">${res.totalBatchTerkirim} <span class="text-sm font-medium text-slate-500">Batch</span></p>
+            const rekapHtml = `
+            <div class="bg-white border border-slate-200 shadow-sm p-5 rounded-2xl relative overflow-hidden">
+                <p class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">Total Terkirim</p>
+                <p class="text-3xl md:text-4xl font-extrabold text-slate-800">${res.totalBatchTerkirim} <span class="text-sm font-medium text-slate-500">Batch</span></p>
             </div>
-            <div class="bg-red-50 border border-red-100 shadow-sm p-4 rounded-2xl relative overflow-hidden flex flex-col justify-between h-32">
-                <p class="text-[11px] font-bold text-red-500 uppercase tracking-wider mb-1">Kritis Terselamatkan</p>
-                <p class="text-2xl font-extrabold text-red-700">${res.kritisTerselamatkan || res.diselamatkanKritis || 0}</p>
+            <div class="bg-red-50 border border-red-200 shadow-sm p-5 rounded-2xl relative overflow-hidden">
+                <p class="text-sm font-bold text-red-600 uppercase tracking-wider mb-2">Status Kritis</p>
+                <p class="text-3xl md:text-4xl font-extrabold text-red-700">${res.statusKritis || res.diselamatkanKritis || 0}</p>
             </div>
-            <div class="bg-sky-50 border border-sky-100 shadow-sm p-4 rounded-2xl relative overflow-hidden flex flex-col justify-between h-32">
-                <p class="text-[11px] font-bold text-sky-600 uppercase tracking-wider mb-1">Kritis Tidak Terselamatkan</p>
-                <p class="text-2xl font-extrabold text-sky-700">${res.kritisTidakTerselamatkan || res.tidakTerselamatkan || 0}</p>
+            <div class="bg-amber-50 border border-amber-200 shadow-sm p-5 rounded-2xl relative overflow-hidden">
+                <p class="text-sm font-bold text-amber-600 uppercase tracking-wider mb-2">Status Cukup</p>
+                <p class="text-3xl md:text-4xl font-extrabold text-amber-700">${res.diselamatkanCukup || 0}</p>
             </div>
-            <div class="bg-amber-50 border border-amber-100 shadow-sm p-4 rounded-2xl relative overflow-hidden flex flex-col justify-between h-32">
-                <p class="text-[11px] font-bold text-amber-600 uppercase tracking-wider mb-1">Status Cukup</p>
-                <p class="text-2xl font-extrabold text-amber-700">${res.diselamatkanCukup || 0}</p>
-            </div>
-            <div class="bg-emerald-50 border border-emerald-100 shadow-sm p-4 rounded-2xl relative overflow-hidden flex flex-col justify-between h-32">
-                <p class="text-[11px] font-bold text-emerald-600 uppercase tracking-wider mb-1">Status Segar</p>
-                <p class="text-2xl font-extrabold text-emerald-700">${res.diselamatkanSegar || 0}</p>
+            <div class="bg-emerald-50 border border-emerald-200 shadow-sm p-5 rounded-2xl relative overflow-hidden">
+                <p class="text-sm font-bold text-emerald-600 uppercase tracking-wider mb-2">Status Segar</p>
+                <p class="text-3xl md:text-4xl font-extrabold text-emerald-700">${res.diselamatkanSegar || 0}</p>
             </div>
         `;
         $('#rekap-riwayat-container').html(rekapHtml);
@@ -433,15 +461,100 @@ function selectDropdown(tipe, value, text) {
     }
     loadRiwayat();
 }
-
 window.onclick = function(event) {
     if (!event.target.closest('#dd-bulan-container')) {
         document.getElementById('dd-bulan').classList.add('hidden');
     }
+
     if (!event.target.closest('#dd-status-container')) {
         document.getElementById('dd-status').classList.add('hidden');
     }
+
     if (!event.target.closest('#dd-komoditas-container')) {
         document.getElementById('dd-komoditas').classList.add('hidden');
+    }
+}
+
+function editPrioritas(idPanen, lahan, berat) {
+    $('#edit-id-panen').val(idPanen);
+    $('#edit-lahan').val(lahan);
+    $('#edit-berat').val(berat);
+    $('#modal-edit-prioritas').removeClass('hidden');
+}
+
+function simpanEditPrioritas() {
+    const idPanen = $('#edit-id-panen').val();
+    const lahan = $('#edit-lahan').val();
+    const berat = parseFloat($('#edit-berat').val());
+
+    if (!lahan || isNaN(berat) || berat <= 0) {
+        alert('Pastikan lahan terisi dan berat lebih dari 0.');
+        return;
+    }
+
+    $.ajax({
+        url: '/api/panen/update',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ idPanen: parseInt(idPanen), lahan: lahan, berat: berat }),
+        success: function () {
+            $('#modal-edit-prioritas').addClass('hidden');
+            loadPrioritas();
+            loadDashboard();
+        }
+    });
+}
+
+function hapusPrioritas(idPanen) {
+    if (confirm('Apakah Anda yakin ingin menghapus data panen ini?')) {
+        $.ajax({
+            url: '/api/panen/delete/' + idPanen,
+            type: 'POST',
+            success: function () {
+                loadPrioritas();
+                loadDashboard();
+            }
+        });
+    }
+}
+
+function editKomoditas(id, nama, umur) {
+    $('#edit-id-komoditas').val(id);
+    $('#edit-nama-komoditas').val(nama);
+    $('#edit-umur-komoditas').val(umur);
+    $('#modal-edit-komoditas').removeClass('hidden');
+}
+
+function simpanEditKomoditas() {
+    const id = $('#edit-id-komoditas').val();
+    const nama = $('#edit-nama-komoditas').val();
+    const umur = parseInt($('#edit-umur-komoditas').val());
+
+    if (!nama || isNaN(umur) || umur <= 0) {
+        alert('Pastikan nama terisi dan umur minimal 1 hari.');
+        return;
+    }
+
+    $.ajax({
+        url: '/api/komoditas/update',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ id: parseInt(id), nama: nama, umur: umur }),
+        success: function () {
+            $('#modal-edit-komoditas').addClass('hidden');
+            loadKomoditasOptions();
+        }
+    });
+}
+
+function hapusKomoditas(id) {
+    if (confirm('Apakah Anda yakin ingin menghapus komoditas ini?')) {
+        $.ajax({
+            url: '/api/komoditas/delete/' + id,
+            type: 'POST',
+            success: function () {
+                loadKomoditasOptions();
+            }
+        });
     }
 }

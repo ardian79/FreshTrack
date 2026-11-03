@@ -16,7 +16,7 @@ object PanenRepo {
     val conn = getConn()
     try {
       val stmt = conn.createStatement()
-      val rs = stmt.executeQuery("SELECT id, nama, umur_simpan_hari FROM komoditas ORDER BY nama ASC")
+      val rs = stmt.executeQuery("SELECT id, nama, umur_simpan_hari FROM komoditas WHERE is_deleted = FALSE ORDER BY nama ASC")
       while rs.next() do {
         hasil = hasil :+ Komoditas(
           rs.getInt("id"),
@@ -33,10 +33,36 @@ object PanenRepo {
   def simpanKomoditas(nama: String, umurSimpanHari: Int): Unit = {
     val conn = getConn()
     try {
-      val sql = "INSERT INTO komoditas (nama, umur_simpan_hari) VALUES (?, ?) ON CONFLICT (nama) DO UPDATE SET umur_simpan_hari = EXCLUDED.umur_simpan_hari"
+      val sql = "INSERT INTO komoditas (nama, umur_simpan_hari) VALUES (?, ?) ON CONFLICT (nama) DO UPDATE SET umur_simpan_hari = EXCLUDED.umur_simpan_hari, is_deleted = FALSE"
       val pstmt = conn.prepareStatement(sql)
       pstmt.setString(1, nama.trim)
       pstmt.setInt(2, umurSimpanHari)
+      pstmt.executeUpdate()
+    } finally {
+      conn.close()
+    }
+  }
+
+  def updateKomoditas(id: Int, nama: String, umur: Int): Unit = {
+    val conn = getConn()
+    try {
+      val sql = "UPDATE komoditas SET nama = ?, umur_simpan_hari = ? WHERE id = ?"
+      val pstmt = conn.prepareStatement(sql)
+      pstmt.setString(1, nama.trim)
+      pstmt.setInt(2, umur)
+      pstmt.setInt(3, id)
+      pstmt.executeUpdate()
+    } finally {
+      conn.close()
+    }
+  }
+
+  def softDeleteKomoditas(id: Int): Unit = {
+    val conn = getConn()
+    try {
+      val sql = "UPDATE komoditas SET is_deleted = TRUE WHERE id = ?"
+      val pstmt = conn.prepareStatement(sql)
+      pstmt.setInt(1, id)
       pstmt.executeUpdate()
     } finally {
       conn.close()
@@ -98,6 +124,31 @@ object PanenRepo {
     }
   }
 
+  def hapusPanen(idPanen: Int): Unit = {
+    val conn = getConn()
+    try {
+      val pstmt = conn.prepareStatement("DELETE FROM panen WHERE id = ?")
+      pstmt.setInt(1, idPanen)
+      pstmt.executeUpdate()
+    } finally {
+      conn.close()
+    }
+  }
+
+  def updatePanen(idPanen: Int, lahan: String, beratKg: Double): Unit = {
+    val conn = getConn()
+    try {
+      val sql = "UPDATE panen SET lahan = ?, berat_kg = ? WHERE id = ?"
+      val pstmt = conn.prepareStatement(sql)
+      pstmt.setString(1, lahan.trim)
+      pstmt.setDouble(2, beratKg)
+      pstmt.setInt(3, idPanen)
+      pstmt.executeUpdate()
+    } finally {
+      conn.close()
+    }
+  }
+
   def ambilSemuaBatch(): List[Batch] = {
     var hasil = List.empty[Batch]
     val conn = getConn()
@@ -149,10 +200,9 @@ object PanenRepo {
   def ambilSemuaPengiriman(): List[Pengiriman] = {
     var hasil = List.empty[Pengiriman]
     val conn = getConn()
-
     try {
       val stmt = conn.createStatement()
-      val rs = stmt.executeQuery("SELECT id, batch_id, tanggal_kirim, tujuan, status_kirim FROM pengiriman ORDER BY tanggal_kirim DESC, id DESC")
+      val rs = stmt.executeQuery("SELECT id, batch_id, tanggal_kirim, tujuan, status_kirim FROM pengiriman ORDER BY id DESC")
       while rs.next() do {
         hasil = hasil :+ Pengiriman(
           rs.getInt("id"),

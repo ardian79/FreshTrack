@@ -6,8 +6,7 @@ import freshtrack.application.PanenService
 object Routes extends cask.Routes {
 
   @cask.get("/")
-  def root() =
-    cask.Redirect("/public/index.html")
+  def root() = cask.Redirect("/public/index.html")
 
   @cask.get("/api/dashboard")
   def getDashboard() = {
@@ -19,11 +18,7 @@ object Routes extends cask.Routes {
   def getKomoditas() = {
     val list = PanenService.ambilKomoditas()
     val jsonArr = list.map { k =>
-      ujson.Obj(
-        "id" -> k.id,
-        "nama" -> k.nama,
-        "umur" -> k.umurSimpanHari
-      )
+      ujson.Obj("id" -> k.id, "nama" -> k.nama, "umur" -> k.umurSimpanHari)
     }
     cask.Response(ujson.Arr.from(jsonArr).render(), headers = Seq("Content-Type" -> "application/json"))
   }
@@ -34,10 +29,34 @@ object Routes extends cask.Routes {
     cask.Response(ujson.Obj("status" -> "sukses").render(), headers = Seq("Content-Type" -> "application/json"))
   }
 
+  @cask.postJson("/api/komoditas/update")
+  def updateKomoditas(id: Int, nama: String, umur: Int) = {
+    PanenService.updateKomoditas(id, nama, umur)
+    cask.Response(ujson.Obj("status" -> "sukses").render(), headers = Seq("Content-Type" -> "application/json"))
+  }
+
+  @cask.post("/api/komoditas/delete/:id")
+  def deleteKomoditas(id: Int) = {
+    PanenService.hapusKomoditas(id)
+    cask.Response(ujson.Obj("status" -> "sukses").render(), headers = Seq("Content-Type" -> "application/json"))
+  }
+
   @cask.postJson("/api/panen")
   def postPanen(komoditasId: Int, lahan: String, berat: Double, tanggal: String) = {
     val tgl = if tanggal.nonEmpty then LocalDate.parse(tanggal) else LocalDate.now()
     PanenService.tambahPanenBaru(komoditasId, lahan, berat, tgl)
+    cask.Response(ujson.Obj("status" -> "sukses").render(), headers = Seq("Content-Type" -> "application/json"))
+  }
+
+  @cask.postJson("/api/panen/update")
+  def updatePanen(idPanen: Int, lahan: String, berat: Double) = {
+    PanenService.updatePanen(idPanen, lahan, berat)
+    cask.Response(ujson.Obj("status" -> "sukses").render(), headers = Seq("Content-Type" -> "application/json"))
+  }
+
+  @cask.post("/api/panen/delete/:id")
+  def deletePanen(id: Int) = {
+    PanenService.hapusPanen(id)
     cask.Response(ujson.Obj("status" -> "sukses").render(), headers = Seq("Content-Type" -> "application/json"))
   }
 
