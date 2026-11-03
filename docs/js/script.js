@@ -10,12 +10,12 @@ $(document).ready(function () {
 
     $('#form-panen').submit(function (e) {
         e.preventDefault();
-        alert('Ini adalah versi statis (GitHub Pages). Data tidak dapat disimpan ke database.');
+        alert('Ini adalah versi statis. Data tidak dapat disimpan ke database.');
     });
 
     $('#form-komoditas').submit(function (e) {
         e.preventDefault();
-        alert('Ini adalah versi statis (GitHub Pages). Data tidak dapat disimpan ke database.');
+        alert('Ini adalah versi statis. Data tidak dapat disimpan ke database.');
     });
 });
 
