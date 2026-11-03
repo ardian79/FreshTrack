@@ -59,8 +59,8 @@ object Routes extends cask.Routes {
   }
 
   @cask.get("/api/riwayat")
-  def getRiwayat(bulan: Option[Int] = None, status: Option[String] = None) = {
-    val res = PanenService.getRiwayatDanRekap(bulan, status)
+  def getRiwayat(bulan: Option[Int] = None, status: Option[String] = None, tujuan: Option[String] = None) = {
+    val res = PanenService.getRiwayatDanRekap(bulan, status, tujuan)
     cask.Response(res.render(), headers = Seq("Content-Type" -> "application/json"))
   }
 

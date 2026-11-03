@@ -114,7 +114,7 @@ object PanenService {
     }
   }
 
-  def getRiwayatDanRekap(filterBulan: Option[Int], filterStatus: Option[String]): ujson.Obj = {
+  def getRiwayatDanRekap(filterBulan: Option[Int], filterStatus: Option[String], filterTujuan: Option[String] = None): ujson.Obj = {
     val (semuaBatch, mapPanen) = sinkronisasiBatchHariIni()
     val mapBatch = semuaBatch.map(b => b.id -> b).toMap
     val semuaPengiriman = PanenRepo.ambilSemuaPengiriman()
@@ -130,7 +130,13 @@ object PanenService {
             case None | Some("") => true
             case Some(st)        => statusAktif.toString.equalsIgnoreCase(st.trim)
           }
-          if cocokStatus then Some((kirim, b, p, statusAktif, sisaKirim)) else None
+          
+          val cocokTujuan = filterTujuan match {
+            case None | Some("") => true
+            case Some(tj)        => kirim.tujuan.toLowerCase.contains(tj.trim.toLowerCase)
+          }
+
+          if cocokStatus && cocokTujuan then Some((kirim, b, p, statusAktif, sisaKirim)) else None
         }.flatten
       }
     }

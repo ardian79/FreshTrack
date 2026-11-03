@@ -349,9 +349,12 @@ function konfirmasiKirim() {
 function loadRiwayat() {
     const bulan = $('#filter-bulan').val();
     const status = $('#filter-status').val();
+    const tujuan = $('#filter-tujuan').val();
+
     const params = {};
     if (bulan) params.bulan = parseInt(bulan);
     if (status) params.status = status;
+    if (tujuan) params.tujuan = tujuan;
 
     $.getJSON('/api/riwayat', params, function (res) {
         const rekapHtml = `
