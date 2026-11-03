@@ -314,7 +314,7 @@ function loadPrioritas() {
                             <button class="h-9 px-4 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg transition-all flex items-center justify-center whitespace-nowrap active:scale-95" onclick="kirimBarang(${item.idBatch}, '${item.komoditas.replace(/'/g, "\\'")}')">
                                 Kirim
                             </button>
-                            <button class="w-9 h-9 bg-amber-100 text-amber-700 hover:bg-amber-200 rounded-lg transition-all flex items-center justify-center" onclick="editPrioritas(${item.idPanen}, '${item.lahan}', ${item.berat})" title="Edit">
+                            <button class="w-9 h-9 bg-amber-100 text-amber-700 hover:bg-amber-200 rounded-lg transition-all flex items-center justify-center" onclick="editPrioritas(${item.idPanen}, '${item.lahan}', ${item.berat}, '${item.tanggalPanen}')" title="Edit">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                                 </svg>
@@ -475,10 +475,14 @@ window.onclick = function(event) {
     }
 }
 
-function editPrioritas(idPanen, lahan, berat) {
+function editPrioritas(idPanen, lahan, berat, tanggalPanen) {
     $('#edit-id-panen').val(idPanen);
     $('#edit-lahan').val(lahan);
     $('#edit-berat').val(berat);
+    
+    const today = new Date().toISOString().split('T')[0];
+    $('#edit-tanggal-panen').val(today); 
+    
     $('#modal-edit-prioritas').removeClass('hidden');
 }
 
@@ -486,9 +490,10 @@ function simpanEditPrioritas() {
     const idPanen = $('#edit-id-panen').val();
     const lahan = $('#edit-lahan').val();
     const berat = parseFloat($('#edit-berat').val());
+    const tanggal = $('#edit-tanggal-panen').val();
 
-    if (!lahan || isNaN(berat) || berat <= 0) {
-        alert('Pastikan lahan terisi dan berat lebih dari 0.');
+    if (!lahan || isNaN(berat) || berat <= 0 || !tanggal) {
+        alert('Pastikan lahan, berat (>0), dan tanggal terisi dengan benar.');
         return;
     }
 
@@ -496,23 +501,29 @@ function simpanEditPrioritas() {
         url: '/api/panen/update',
         type: 'POST',
         contentType: 'application/json',
-        data: JSON.stringify({ idPanen: parseInt(idPanen), lahan: lahan, berat: berat }),
+        data: JSON.stringify({ idPanen: parseInt(idPanen), lahan: lahan, berat: berat, tanggal: tanggal }),
         success: function () {
             $('#modal-edit-prioritas').addClass('hidden');
             loadPrioritas();
             loadDashboard();
+        },
+        error: function (xhr) {
+            alert("Error: " + (xhr.responseJSON ? xhr.responseJSON.pesan : "Gagal menyimpan perubahan."));
         }
     });
 }
 
 function hapusPrioritas(idPanen) {
-    if (confirm('Apakah Anda yakin ingin menghapus data panen ini?')) {
+    if (confirm('Apakah Anda yakin ingin menghapus data panen ini? Data yang dihapus tidak akan muncul di riwayat.')) {
         $.ajax({
             url: '/api/panen/delete/' + idPanen,
             type: 'POST',
             success: function () {
                 loadPrioritas();
                 loadDashboard();
+            },
+            error: function (xhr) {
+                alert("Gagal menghapus data. Pastikan data tidak sedang terikat dengan proses lain.\nDetail: " + (xhr.responseText || xhr.statusText));
             }
         });
     }
@@ -543,17 +554,23 @@ function simpanEditKomoditas() {
         success: function () {
             $('#modal-edit-komoditas').addClass('hidden');
             loadKomoditasOptions();
+        },
+        error: function (xhr) {
+            alert("Gagal menyimpan komoditas: " + (xhr.responseText || "Terjadi kesalahan sistem"));
         }
     });
 }
 
 function hapusKomoditas(id) {
-    if (confirm('Apakah Anda yakin ingin menghapus komoditas ini?')) {
+    if (confirm('Apakah Anda yakin ingin menghapus komoditas ini? Data riwayat dan prioritas yang sudah ada tidak akan hilang.')) {
         $.ajax({
             url: '/api/komoditas/delete/' + id,
             type: 'POST',
             success: function () {
                 loadKomoditasOptions();
+            },
+            error: function (xhr) {
+                alert("Gagal menghapus komoditas: " + (xhr.responseText || "Terjadi kesalahan sistem"));
             }
         });
     }

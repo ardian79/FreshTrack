@@ -49,8 +49,9 @@ object Routes extends cask.Routes {
   }
 
   @cask.postJson("/api/panen/update")
-  def updatePanen(idPanen: Int, lahan: String, berat: Double) = {
-    PanenService.updatePanen(idPanen, lahan, berat)
+  def updatePanen(idPanen: Int, lahan: String, berat: Double, tanggal: String) = {
+    val tgl = if tanggal.nonEmpty then LocalDate.parse(tanggal) else LocalDate.now()
+    PanenService.updatePanen(idPanen, lahan, berat, tgl) // Tambahkan tgl
     cask.Response(ujson.Obj("status" -> "sukses").render(), headers = Seq("Content-Type" -> "application/json"))
   }
 
@@ -66,14 +67,19 @@ object Routes extends cask.Routes {
     cask.Response(jsonArr.render(), headers = Seq("Content-Type" -> "application/json"))
   }
 
-  @cask.postJson("/api/kirim")
+    @cask.postJson("/api/kirim")
   def postKirim(idBatch: Int, tujuan: String, tanggalKirim: String) = {
-    val tgl = if tanggalKirim.nonEmpty then LocalDate.parse(tanggalKirim) else LocalDate.now()
-    PanenService.eksekusiPengiriman(idBatch, tujuan, tgl) match {
-      case Right(_) =>
-        cask.Response(ujson.Obj("status" -> "sukses").render(), headers = Seq("Content-Type" -> "application/json"))
-      case Left(pesan) =>
-        cask.Response(ujson.Obj("status" -> "gagal", "pesan" -> pesan).render(), statusCode = 400, headers = Seq("Content-Type" -> "application/json"))
+    try {
+      val tgl = if tanggalKirim.nonEmpty then LocalDate.parse(tanggalKirim) else LocalDate.now()
+      PanenService.eksekusiPengiriman(idBatch, tujuan, tgl) match {
+        case Right(_) =>
+          cask.Response(ujson.Obj("status" -> "sukses").render(), headers = Seq("Content-Type" -> "application/json"))
+        case Left(pesan) =>
+          cask.Response(ujson.Obj("status" -> "gagal", "pesan" -> pesan).render(), statusCode = 400, headers = Seq("Content-Type" -> "application/json"))
+      }
+    } catch {
+      case e: Exception =>
+        cask.Response(ujson.Obj("status" -> "gagal", "pesan" -> s"Error Database: ${e.getMessage}").render(), statusCode = 500, headers = Seq("Content-Type" -> "application/json"))
     }
   }
 

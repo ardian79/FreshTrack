@@ -79,7 +79,8 @@
         </div>
         <div class="p-4 border-t border-slate-100">
             <div class="flex items-center px-3 py-2 bg-slate-50 rounded-xl border border-slate-200">
-                <div class="w-9 h-9 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold text-sm shadow-sm" aria-hidden="true">
+                <div class="w-9 h-9 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold text-sm shadow-sm"
+                    aria-hidden="true">
                     AD</div>
                 <div class="ml-3">
                     <p class="text-sm font-bold text-slate-800">Admin Gudang</p>
@@ -107,8 +108,10 @@
                 </div>
 
                 <div id="box-early-warning"
-                    class="hidden bg-red-50 border-l-4 border-red-500 p-4 rounded-r-xl shadow-sm flex items-start" role="alert">
-                    <svg class="w-5 h-5 text-red-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    class="hidden bg-red-50 border-l-4 border-red-500 p-4 rounded-r-xl shadow-sm flex items-start"
+                    role="alert">
+                    <svg class="w-5 h-5 text-red-500 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
                         </path>
@@ -121,8 +124,8 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div
                         class="bg-white p-5 rounded-2xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)] border border-slate-100 relative overflow-hidden group">
-                        <div
-                            class="absolute right-0 top-0 w-24 h-24 bg-emerald-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110" aria-hidden="true">
+                        <div class="absolute right-0 top-0 w-24 h-24 bg-emerald-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"
+                            aria-hidden="true">
                         </div>
                         <p class="text-xs font-bold text-slate-400 uppercase tracking-wider relative z-10">Total
                             Inventaris</p>
@@ -133,8 +136,8 @@
                     </div>
                     <div
                         class="bg-white p-5 rounded-2xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)] border border-slate-100 relative overflow-hidden group">
-                        <div
-                            class="absolute right-0 top-0 w-24 h-24 bg-blue-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110" aria-hidden="true">
+                        <div class="absolute right-0 top-0 w-24 h-24 bg-blue-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"
+                            aria-hidden="true">
                         </div>
                         <p class="text-xs font-bold text-slate-400 uppercase tracking-wider relative z-10">Total Batch
                             Aktif</p>
@@ -149,21 +152,24 @@
                         <div class="space-y-2">
                             <div class="flex justify-between items-center text-sm">
                                 <span class="text-emerald-600 font-semibold flex items-center"><span
-                                        class="w-2 h-2 rounded-full bg-emerald-500 mr-2" aria-hidden="true"></span>Segar</span>
+                                        class="w-2 h-2 rounded-full bg-emerald-500 mr-2"
+                                        aria-hidden="true"></span>Segar</span>
                                 <span
                                     class="font-bold bg-emerald-50 text-emerald-700 w-8 h-8 flex items-center justify-center rounded-lg"
                                     id="dash-rekap-segar">0</span>
                             </div>
                             <div class="flex justify-between items-center text-sm">
                                 <span class="text-amber-500 font-semibold flex items-center"><span
-                                        class="w-2 h-2 rounded-full bg-amber-500 mr-2" aria-hidden="true"></span>Cukup</span>
+                                        class="w-2 h-2 rounded-full bg-amber-500 mr-2"
+                                        aria-hidden="true"></span>Cukup</span>
                                 <span
                                     class="font-bold bg-amber-50 text-amber-700 w-8 h-8 flex items-center justify-center rounded-lg"
                                     id="dash-rekap-cukup">0</span>
                             </div>
                             <div class="flex justify-between items-center text-sm">
                                 <span class="text-red-500 font-semibold flex items-center"><span
-                                        class="w-2 h-2 rounded-full bg-red-500 mr-2" aria-hidden="true"></span>Kritis</span>
+                                        class="w-2 h-2 rounded-full bg-red-500 mr-2"
+                                        aria-hidden="true"></span>Kritis</span>
                                 <span
                                     class="font-bold bg-red-50 text-red-700 w-8 h-8 flex items-center justify-center rounded-lg"
                                     id="dash-rekap-kritis">0</span>
@@ -177,7 +183,8 @@
                         class="bg-white p-6 rounded-2xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)] border border-slate-100">
                         <h3 class="text-base font-bold text-slate-800 mb-4">Proporsi Kesegaran</h3>
                         <div class="h-64 relative flex flex-col justify-between items-center pb-2">
-                            <div class="relative w-56 h-52 mt-1" role="img" aria-label="Grafik donat proporsi kesegaran">
+                            <div class="relative w-56 h-52 mt-1" role="img"
+                                aria-label="Grafik donat proporsi kesegaran">
                                 <canvas id="chartKesegaran"></canvas>
                             </div>
                         </div>
@@ -186,7 +193,8 @@
                         class="bg-white p-6 rounded-2xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)] border border-slate-100">
                         <h3 class="text-base font-bold text-slate-800 mb-4">Total Berat Setiap Komoditas (Kg)</h3>
                         <div class="h-64 relative overflow-x-auto overflow-y-hidden">
-                            <div id="chartPrioritasWrapper" class="h-full" role="img" aria-label="Grafik batang total berat per komoditas">
+                            <div id="chartPrioritasWrapper" class="h-full" role="img"
+                                aria-label="Grafik batang total berat per komoditas">
                                 <canvas id="chartPrioritas"></canvas>
                             </div>
                         </div>
@@ -196,9 +204,11 @@
                 <div
                     class="bg-white rounded-2xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)] border border-slate-100 overflow-hidden">
                     <div class="px-6 py-5 border-b border-slate-100 flex justify-between items-center">
-                        <h3 class="text-base font-bold text-slate-800 whitespace-nowrap">3 Prioritas Pengiriman Teratas</h3>
+                        <h3 class="text-base font-bold text-slate-800 whitespace-nowrap">3 Prioritas Pengiriman Teratas
+                        </h3>
                         <button onclick="showPage('prioritas')"
-                            class="text-xs font-bold text-emerald-600 hover:text-emerald-800 transition whitespace-nowrap ml-2" aria-label="Lihat semua prioritas pengiriman">Lihat Semua
+                            class="text-xs font-bold text-emerald-600 hover:text-emerald-800 transition whitespace-nowrap ml-2"
+                            aria-label="Lihat semua prioritas pengiriman">Lihat Semua
                             &rarr;</button>
                     </div>
                     <div class="overflow-x-auto">
@@ -232,7 +242,8 @@
                                 class="block text-xs font-bold text-slate-600 mb-2 uppercase tracking-wide">Komoditas</label>
                             <div class="relative" id="dd-komoditas-container">
                                 <button type="button" onclick="toggleKomoditasDropdown()"
-                                    class="w-full flex justify-between items-center bg-slate-50 border border-slate-300 rounded-xl p-3.5 text-sm text-slate-700 hover:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition" aria-haspopup="listbox" aria-expanded="false" aria-label="Pilih Komoditas">
+                                    class="w-full flex justify-between items-center bg-slate-50 border border-slate-300 rounded-xl p-3.5 text-sm text-slate-700 hover:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
+                                    aria-haspopup="listbox" aria-expanded="false" aria-label="Pilih Komoditas">
                                     <span id="dd-komoditas-text">-- Pilih Komoditas --</span>
                                     <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24" aria-hidden="true">
@@ -248,7 +259,8 @@
                             </div>
                         </div>
                         <div>
-                            <label for="lahan" class="block text-xs font-bold text-slate-600 mb-2 uppercase tracking-wide">Asal
+                            <label for="lahan"
+                                class="block text-xs font-bold text-slate-600 mb-2 uppercase tracking-wide">Asal
                                 Lahan</label>
                             <input type="text" id="lahan"
                                 class="w-full border border-slate-300 rounded-xl p-3.5 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition"
@@ -256,7 +268,8 @@
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div>
-                                <label for="berat" class="block text-xs font-bold text-slate-600 mb-2 uppercase tracking-wide">Berat
+                                <label for="berat"
+                                    class="block text-xs font-bold text-slate-600 mb-2 uppercase tracking-wide">Berat
                                     (Kg)</label>
                                 <input type="number" step="0.1" min="0.1" id="berat"
                                     class="w-full border border-slate-300 rounded-xl p-3.5 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition"
@@ -273,7 +286,8 @@
                         </div>
                         <div class="pt-4">
                             <button type="submit"
-                                class="w-full bg-emerald-600 text-white text-sm font-bold py-4 px-4 rounded-xl hover:bg-emerald-700 hover:shadow-lg transition-all transform active:scale-95" aria-label="Simpan Data Panen">Simpan
+                                class="w-full bg-emerald-600 text-white text-sm font-bold py-4 px-4 rounded-xl hover:bg-emerald-700 hover:shadow-lg transition-all transform active:scale-95"
+                                aria-label="Simpan Data Panen">Simpan
                                 Data Panen</button>
                         </div>
                     </form>
@@ -316,22 +330,27 @@
                         <h2 class="text-2xl font-bold text-slate-800">Riwayat Distribusi</h2>
                         <p class="text-sm text-slate-500 mt-1">Laporan komoditas yang telah berhasil dikirim.</p>
                     </div>
-                    
+
                     <div class="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto relative">
-                        
+
                         <div class="relative w-full sm:w-60">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" aria-hidden="true">
-                                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                                aria-hidden="true">
+                                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                 </svg>
                             </div>
-                            <input type="text" id="filter-tujuan" oninput="loadRiwayat()" placeholder="Cari Tujuan..." aria-label="Cari tujuan pengiriman"
+                            <input type="text" id="filter-tujuan" oninput="loadRiwayat()" placeholder="Cari Tujuan..."
+                                aria-label="Cari tujuan pengiriman"
                                 class="w-full h-10 bg-white border border-slate-300 rounded-xl pl-10 pr-3 text-sm font-medium text-slate-700 hover:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 shadow-sm transition">
                         </div>
 
                         <div class="relative w-full sm:w-44" id="dd-bulan-container">
                             <button type="button" onclick="toggleDropdown('dd-bulan')"
-                                class="w-full h-10 flex justify-between items-center bg-white border border-slate-300 rounded-xl px-3 text-sm font-medium text-slate-700 hover:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 shadow-sm transition" aria-haspopup="listbox" aria-expanded="false">
+                                class="w-full h-10 flex justify-between items-center bg-white border border-slate-300 rounded-xl px-3 text-sm font-medium text-slate-700 hover:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 shadow-sm transition"
+                                aria-haspopup="listbox" aria-expanded="false">
                                 <span id="dd-bulan-text">Semua Bulan</span>
                                 <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24" aria-hidden="true">
@@ -343,39 +362,41 @@
                             <div id="dd-bulan"
                                 class="hidden absolute right-0 z-50 w-full mt-1 bg-white border border-slate-200 rounded-xl shadow-lg max-h-60 overflow-y-auto">
                                 <ul class="py-1 text-sm text-slate-700" role="listbox">
-                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" role="option"
-                                        onclick="selectDropdown('bulan', '', 'Semua Bulan')">Semua Bulan</li>
-                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" role="option"
-                                        onclick="selectDropdown('bulan', '1', 'Januari')">Januari</li>
-                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" role="option"
-                                        onclick="selectDropdown('bulan', '2', 'Februari')">Februari</li>
-                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" role="option"
-                                        onclick="selectDropdown('bulan', '3', 'Maret')">Maret</li>
-                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" role="option"
-                                        onclick="selectDropdown('bulan', '4', 'April')">April</li>
-                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" role="option"
-                                        onclick="selectDropdown('bulan', '5', 'Mei')">Mei</li>
-                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" role="option"
-                                        onclick="selectDropdown('bulan', '6', 'Juni')">Juni</li>
-                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" role="option"
-                                        onclick="selectDropdown('bulan', '7', 'Juli')">Juli</li>
-                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" role="option"
-                                        onclick="selectDropdown('bulan', '8', 'Agustus')">Agustus</li>
-                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" role="option"
-                                        onclick="selectDropdown('bulan', '9', 'September')">September</li>
-                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" role="option"
-                                        onclick="selectDropdown('bulan', '10', 'Oktober')">Oktober</li>
-                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" role="option"
-                                        onclick="selectDropdown('bulan', '11', 'November')">November</li>
-                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" role="option"
-                                        onclick="selectDropdown('bulan', '12', 'Desember')">Desember</li>
+                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
+                                        role="option" onclick="selectDropdown('bulan', '', 'Semua Bulan')">Semua Bulan
+                                    </li>
+                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
+                                        role="option" onclick="selectDropdown('bulan', '1', 'Januari')">Januari</li>
+                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
+                                        role="option" onclick="selectDropdown('bulan', '2', 'Februari')">Februari</li>
+                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
+                                        role="option" onclick="selectDropdown('bulan', '3', 'Maret')">Maret</li>
+                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
+                                        role="option" onclick="selectDropdown('bulan', '4', 'April')">April</li>
+                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
+                                        role="option" onclick="selectDropdown('bulan', '5', 'Mei')">Mei</li>
+                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
+                                        role="option" onclick="selectDropdown('bulan', '6', 'Juni')">Juni</li>
+                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
+                                        role="option" onclick="selectDropdown('bulan', '7', 'Juli')">Juli</li>
+                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
+                                        role="option" onclick="selectDropdown('bulan', '8', 'Agustus')">Agustus</li>
+                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
+                                        role="option" onclick="selectDropdown('bulan', '9', 'September')">September</li>
+                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
+                                        role="option" onclick="selectDropdown('bulan', '10', 'Oktober')">Oktober</li>
+                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
+                                        role="option" onclick="selectDropdown('bulan', '11', 'November')">November</li>
+                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
+                                        role="option" onclick="selectDropdown('bulan', '12', 'Desember')">Desember</li>
                                 </ul>
                             </div>
                         </div>
 
                         <div class="relative w-full sm:w-44" id="dd-status-container">
                             <button type="button" onclick="toggleDropdown('dd-status')"
-                                class="w-full h-10 flex justify-between items-center bg-white border border-slate-300 rounded-xl px-3 text-sm font-medium text-slate-700 hover:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 shadow-sm transition" aria-haspopup="listbox" aria-expanded="false">
+                                class="w-full h-10 flex justify-between items-center bg-white border border-slate-300 rounded-xl px-3 text-sm font-medium text-slate-700 hover:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 shadow-sm transition"
+                                aria-haspopup="listbox" aria-expanded="false">
                                 <span id="dd-status-text">Semua Status</span>
                                 <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24" aria-hidden="true">
@@ -387,14 +408,15 @@
                             <div id="dd-status"
                                 class="hidden absolute right-0 z-50 w-full mt-1 bg-white border border-slate-200 rounded-xl shadow-lg max-h-60 overflow-y-auto">
                                 <ul class="py-1 text-sm text-slate-700" role="listbox">
-                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" role="option"
-                                        onclick="selectDropdown('status', '', 'Semua Status')">Semua Status</li>
-                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" role="option"
-                                        onclick="selectDropdown('status', 'Kritis', 'Kritis')">Kritis</li>
-                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" role="option"
-                                        onclick="selectDropdown('status', 'Cukup', 'Cukup')">Cukup</li>
-                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer" role="option"
-                                        onclick="selectDropdown('status', 'Segar', 'Segar')">Segar</li>
+                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
+                                        role="option" onclick="selectDropdown('status', '', 'Semua Status')">Semua
+                                        Status</li>
+                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
+                                        role="option" onclick="selectDropdown('status', 'Kritis', 'Kritis')">Kritis</li>
+                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
+                                        role="option" onclick="selectDropdown('status', 'Cukup', 'Cukup')">Cukup</li>
+                                    <li class="px-4 py-2 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
+                                        role="option" onclick="selectDropdown('status', 'Segar', 'Segar')">Segar</li>
                                 </ul>
                             </div>
                         </div>
@@ -431,21 +453,24 @@
                         </div>
                         <form id="form-komoditas" class="p-6 space-y-5">
                             <div>
-                                <label for="nama-komoditas" class="block text-xs font-bold text-slate-600 mb-2 uppercase tracking-wide">Nama
+                                <label for="nama-komoditas"
+                                    class="block text-xs font-bold text-slate-600 mb-2 uppercase tracking-wide">Nama
                                     Tanaman</label>
                                 <input type="text" id="nama-komoditas"
                                     class="w-full border border-slate-300 rounded-xl p-3.5 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none transition"
                                     required>
                             </div>
                             <div>
-                                <label for="umur-komoditas" class="block text-xs font-bold text-slate-600 mb-2 uppercase tracking-wide">Umur
+                                <label for="umur-komoditas"
+                                    class="block text-xs font-bold text-slate-600 mb-2 uppercase tracking-wide">Umur
                                     Simpan (Hari)</label>
                                 <input type="number" min="1" id="umur-komoditas"
                                     class="w-full border border-slate-300 rounded-xl p-3.5 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none transition"
                                     required>
                             </div>
                             <button type="submit"
-                                class="w-full bg-slate-800 text-white text-sm font-bold py-3.5 px-4 rounded-xl hover:bg-slate-900 shadow-md transition-all active:scale-95" aria-label="Simpan Komoditas">Simpan
+                                class="w-full bg-slate-800 text-white text-sm font-bold py-3.5 px-4 rounded-xl hover:bg-slate-900 shadow-md transition-all active:scale-95"
+                                aria-label="Simpan Komoditas">Simpan
                                 Komoditas</button>
                         </form>
                     </div>
@@ -459,7 +484,8 @@
                                 <thead class="bg-slate-50 text-slate-500 border-b border-slate-100">
                                     <tr>
                                         <th scope="col" class="px-6 py-4 font-semibold">Nama Komoditas</th>
-                                        <th scope="col" class="px-6 py-4 font-semibold text-center">Umur Simpan Maksimal</th>
+                                        <th scope="col" class="px-6 py-4 font-semibold text-center">Umur Simpan Maksimal
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody id="tabel-komoditas" class="divide-y divide-slate-100"></tbody>
@@ -473,12 +499,13 @@
     </main>
 
     <div id="modal-kirim"
-        class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+        role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div
             class="bg-white/95 backdrop-blur-md p-6 md:p-8 rounded-3xl shadow-2xl w-full max-w-md border border-white/20 transform transition-all scale-100">
             <div class="flex items-center mb-5">
-                <div
-                    class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 mr-4" aria-hidden="true">
+                <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 mr-4"
+                    aria-hidden="true">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4">
@@ -493,23 +520,26 @@
 
             <input type="hidden" id="modal-id-batch">
             <div class="mb-6">
-                <label for="modal-tujuan" class="block text-xs font-bold text-slate-600 mb-2 uppercase tracking-wide">Lokasi Tujuan</label>
+                <label for="modal-tujuan"
+                    class="block text-xs font-bold text-slate-600 mb-2 uppercase tracking-wide">Lokasi Tujuan</label>
                 <input type="text" id="modal-tujuan"
                     class="w-full border border-slate-300 rounded-xl p-3.5 text-sm bg-white/50 focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none transition"
                     required>
             </div>
             <div class="flex justify-end gap-3">
                 <button onclick="tutupModal()"
-                    class="px-5 py-2.5 bg-white border border-slate-300 text-slate-700 text-sm font-bold rounded-xl hover:bg-slate-50 transition" aria-label="Batal mengirim">Batal</button>
+                    class="px-5 py-2.5 bg-white border border-slate-300 text-slate-700 text-sm font-bold rounded-xl hover:bg-slate-50 transition"
+                    aria-label="Batal mengirim">Batal</button>
                 <button onclick="konfirmasiKirim()"
-                    class="px-5 py-2.5 bg-emerald-600 text-white text-sm font-bold rounded-xl hover:bg-emerald-700 shadow-md transition active:scale-95" aria-label="Konfirmasi kirim sekarang">Kirim
+                    class="px-5 py-2.5 bg-emerald-600 text-white text-sm font-bold rounded-xl hover:bg-emerald-700 shadow-md transition active:scale-95"
+                    aria-label="Konfirmasi kirim sekarang">Kirim
                     Sekarang</button>
             </div>
         </div>
     </div>
 
-    <nav
-        class="md:hidden fixed bottom-0 w-full bg-white border-t border-slate-200 flex justify-around p-2 pb-3 z-40 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]" aria-label="Navigasi Mobile">
+    <nav class="md:hidden fixed bottom-0 w-full bg-white border-t border-slate-200 flex justify-around p-2 pb-3 z-40 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]"
+        aria-label="Navigasi Mobile">
         <button onclick="showPage('dashboard')" class="mobile-nav flex flex-col items-center p-2 text-emerald-600"
             id="m-btn-dashboard" aria-label="Buka Dashboard">
             <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -520,15 +550,16 @@
             <span class="text-[10px] font-bold">Home</span>
         </button>
         <button onclick="showPage('input')"
-            class="mobile-nav flex flex-col items-center p-2 text-slate-400 hover:text-emerald-600" id="m-btn-input" aria-label="Buka Input Panen">
+            class="mobile-nav flex flex-col items-center p-2 text-slate-400 hover:text-emerald-600" id="m-btn-input"
+            aria-label="Buka Input Panen">
             <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
             </svg>
             <span class="text-[10px] font-medium">Input</span>
         </button>
         <button onclick="showPage('prioritas')"
-            class="mobile-nav flex flex-col items-center p-2 text-slate-400 hover:text-emerald-600"
-            id="m-btn-prioritas" aria-label="Buka Prioritas Distribusi">
+            class="mobile-nav flex flex-col items-center p-2 text-slate-400 hover:text-emerald-600" id="m-btn-prioritas"
+            aria-label="Buka Prioritas Distribusi">
             <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
@@ -537,7 +568,8 @@
             <span class="text-[10px] font-medium">Prioritas</span>
         </button>
         <button onclick="showPage('riwayat')"
-            class="mobile-nav flex flex-col items-center p-2 text-slate-400 hover:text-emerald-600" id="m-btn-riwayat" aria-label="Buka Riwayat Distribusi">
+            class="mobile-nav flex flex-col items-center p-2 text-slate-400 hover:text-emerald-600" id="m-btn-riwayat"
+            aria-label="Buka Riwayat Distribusi">
             <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -545,8 +577,8 @@
             <span class="text-[10px] font-medium">Riwayat</span>
         </button>
         <button onclick="showPage('komoditas')"
-            class="mobile-nav flex flex-col items-center p-2 text-slate-400 hover:text-emerald-600"
-            id="m-btn-komoditas" aria-label="Buka Master Komoditas">
+            class="mobile-nav flex flex-col items-center p-2 text-slate-400 hover:text-emerald-600" id="m-btn-komoditas"
+            aria-label="Buka Master Komoditas">
             <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
@@ -556,40 +588,65 @@
         </button>
     </nav>
 
-    <div id="modal-edit-prioritas" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true">
+    <div id="modal-edit-prioritas"
+        class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+        role="dialog" aria-modal="true">
         <div class="bg-white p-6 md:p-8 rounded-3xl shadow-2xl w-full max-w-md border border-white/20">
             <h3 class="text-xl font-bold text-slate-800 mb-4">Edit Data Panen</h3>
             <input type="hidden" id="edit-id-panen">
             <div class="mb-4">
                 <label class="block text-xs font-bold text-slate-600 mb-2 uppercase tracking-wide">Asal Lahan</label>
-                <input type="text" id="edit-lahan" class="w-full border border-slate-300 rounded-xl p-3.5 text-sm focus:ring-2 focus:ring-emerald-500 outline-none" required>
+                <input type="text" id="edit-lahan"
+                    class="w-full border border-slate-300 rounded-xl p-3.5 text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+                    required>
             </div>
             <div class="mb-6">
                 <label class="block text-xs font-bold text-slate-600 mb-2 uppercase tracking-wide">Berat (Kg)</label>
-                <input type="number" step="0.1" min="0.1" id="edit-berat" class="w-full border border-slate-300 rounded-xl p-3.5 text-sm focus:ring-2 focus:ring-emerald-500 outline-none" required>
+                <input type="number" step="0.1" min="0.1" id="edit-berat"
+                    class="w-full border border-slate-300 rounded-xl p-3.5 text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+                    required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-xs font-bold text-slate-600 mb-2 uppercase tracking-wide">Tanggal Panen</label>
+                <input type="date" id="edit-tanggal-panen"
+                    class="w-full border border-slate-300 rounded-xl p-3.5 text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+                    required>
             </div>
             <div class="flex justify-end gap-3">
-                <button onclick="$('#modal-edit-prioritas').addClass('hidden')" class="px-5 py-2.5 bg-white border border-slate-300 text-slate-700 text-sm font-bold rounded-xl hover:bg-slate-50 transition">Batal</button>
-                <button onclick="simpanEditPrioritas()" class="px-5 py-2.5 bg-emerald-600 text-white text-sm font-bold rounded-xl hover:bg-emerald-700 shadow-md transition">Simpan Perubahan</button>
+                <button onclick="$('#modal-edit-prioritas').addClass('hidden')"
+                    class="px-5 py-2.5 bg-white border border-slate-300 text-slate-700 text-sm font-bold rounded-xl hover:bg-slate-50 transition">Batal</button>
+                <button onclick="simpanEditPrioritas()"
+                    class="px-5 py-2.5 bg-emerald-600 text-white text-sm font-bold rounded-xl hover:bg-emerald-700 shadow-md transition">Simpan
+                    Perubahan</button>
             </div>
         </div>
     </div>
 
-    <div id="modal-edit-komoditas" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true">
+    <div id="modal-edit-komoditas"
+        class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+        role="dialog" aria-modal="true">
         <div class="bg-white p-6 md:p-8 rounded-3xl shadow-2xl w-full max-w-md border border-white/20">
             <h3 class="text-xl font-bold text-slate-800 mb-4">Edit Master Komoditas</h3>
             <input type="hidden" id="edit-id-komoditas">
             <div class="mb-4">
                 <label class="block text-xs font-bold text-slate-600 mb-2 uppercase tracking-wide">Nama Tanaman</label>
-                <input type="text" id="edit-nama-komoditas" class="w-full border border-slate-300 rounded-xl p-3.5 text-sm focus:ring-2 focus:ring-emerald-500 outline-none" required>
+                <input type="text" id="edit-nama-komoditas"
+                    class="w-full border border-slate-300 rounded-xl p-3.5 text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+                    required>
             </div>
             <div class="mb-6">
-                <label class="block text-xs font-bold text-slate-600 mb-2 uppercase tracking-wide">Umur Simpan (Hari)</label>
-                <input type="number" min="1" id="edit-umur-komoditas" class="w-full border border-slate-300 rounded-xl p-3.5 text-sm focus:ring-2 focus:ring-emerald-500 outline-none" required>
+                <label class="block text-xs font-bold text-slate-600 mb-2 uppercase tracking-wide">Umur Simpan
+                    (Hari)</label>
+                <input type="number" min="1" id="edit-umur-komoditas"
+                    class="w-full border border-slate-300 rounded-xl p-3.5 text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+                    required>
             </div>
             <div class="flex justify-end gap-3">
-                <button onclick="$('#modal-edit-komoditas').addClass('hidden')" class="px-5 py-2.5 bg-white border border-slate-300 text-slate-700 text-sm font-bold rounded-xl hover:bg-slate-50 transition">Batal</button>
-                <button onclick="simpanEditKomoditas()" class="px-5 py-2.5 bg-emerald-600 text-white text-sm font-bold rounded-xl hover:bg-emerald-700 shadow-md transition">Simpan Perubahan</button>
+                <button onclick="$('#modal-edit-komoditas').addClass('hidden')"
+                    class="px-5 py-2.5 bg-white border border-slate-300 text-slate-700 text-sm font-bold rounded-xl hover:bg-slate-50 transition">Batal</button>
+                <button onclick="simpanEditKomoditas()"
+                    class="px-5 py-2.5 bg-emerald-600 text-white text-sm font-bold rounded-xl hover:bg-emerald-700 shadow-md transition">Simpan
+                    Perubahan</button>
             </div>
         </div>
     </div>

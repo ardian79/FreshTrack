@@ -38,7 +38,8 @@ object PanenService {
 
   def hapusPanen(idPanen: Int): Unit = PanenRepo.hapusPanen(idPanen)
   
-  def updatePanen(idPanen: Int, lahan: String, berat: Double): Unit = PanenRepo.updatePanen(idPanen, lahan, berat)
+  def updatePanen(idPanen: Int, lahan: String, berat: Double, tanggal: LocalDate): Unit = 
+    PanenRepo.updatePanen(idPanen, lahan, berat, tanggal)
 
   def getDataDashboard(): ujson.Obj = {
     val (semuaBatch, mapPanen) = sinkronisasiBatchHariIni()
@@ -62,14 +63,19 @@ object PanenService {
       }
     }
 
-    val volumeKomoditasMap = aktif
+    val semuaKomoditas = PanenRepo.ambilSemuaKomoditas()
+
+    val beratAktifMap = aktif
       .flatMap { b =>
         mapPanen.get(b.idPanen).map(p => (p.komoditas, p.beratKg))
       }
       .groupBy(_._1)
       .view.mapValues(_.map(_._2).sum).toMap
-      .toSeq
-      .sortBy(_._1)
+
+    val volumeKomoditasMap = semuaKomoditas.map { k =>
+      val totalBerat = beratAktifMap.getOrElse(k.nama, 0.0)
+      (k.nama, totalBerat)
+    }.sortBy(_._1)
 
     val volumeKomoditasJson = volumeKomoditasMap.map { case (nama, berat) =>
       ujson.Obj("komoditas" -> nama, "totalBerat" -> berat)

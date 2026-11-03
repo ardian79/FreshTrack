@@ -124,25 +124,43 @@ object PanenRepo {
     }
   }
 
-  def hapusPanen(idPanen: Int): Unit = {
+    def hapusPanen(idPanen: Int): Unit = {
     val conn = getConn()
     try {
-      val pstmt = conn.prepareStatement("DELETE FROM panen WHERE id = ?")
-      pstmt.setInt(1, idPanen)
-      pstmt.executeUpdate()
+      conn.setAutoCommit(false)
+
+      val delPengiriman = conn.prepareStatement("DELETE FROM pengiriman WHERE batch_id IN (SELECT id FROM batch WHERE panen_id = ?)")
+      delPengiriman.setInt(1, idPanen)
+      delPengiriman.executeUpdate()
+
+      val delBatch = conn.prepareStatement("DELETE FROM batch WHERE panen_id = ?")
+      delBatch.setInt(1, idPanen)
+      delBatch.executeUpdate()
+
+      val delPanen = conn.prepareStatement("DELETE FROM panen WHERE id = ?")
+      delPanen.setInt(1, idPanen)
+      delPanen.executeUpdate()
+
+      conn.commit()
+    } catch {
+      case e: Exception =>
+        conn.rollback()
+        throw e
     } finally {
+      conn.setAutoCommit(true)
       conn.close()
     }
   }
 
-  def updatePanen(idPanen: Int, lahan: String, beratKg: Double): Unit = {
+  def updatePanen(idPanen: Int, lahan: String, beratKg: Double, tanggalPanen: LocalDate): Unit = {
     val conn = getConn()
     try {
-      val sql = "UPDATE panen SET lahan = ?, berat_kg = ? WHERE id = ?"
+      val sql = "UPDATE panen SET lahan = ?, berat_kg = ?, tanggal_panen = ? WHERE id = ?"
       val pstmt = conn.prepareStatement(sql)
       pstmt.setString(1, lahan.trim)
       pstmt.setDouble(2, beratKg)
-      pstmt.setInt(3, idPanen)
+      pstmt.setDate(3, java.sql.Date.valueOf(tanggalPanen))
+      pstmt.setInt(4, idPanen)
       pstmt.executeUpdate()
     } finally {
       conn.close()
