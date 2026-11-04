@@ -3,10 +3,12 @@ DROP TABLE IF EXISTS batch CASCADE;
 DROP TABLE IF EXISTS panen CASCADE;
 DROP TABLE IF EXISTS komoditas CASCADE;
 
+
 CREATE TABLE komoditas (
     id SERIAL PRIMARY KEY,
     nama VARCHAR(50) UNIQUE NOT NULL,
-    umur_simpan_hari INT NOT NULL
+    umur_simpan_hari INT NOT NULL,
+    is_deleted BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE panen (
@@ -33,11 +35,11 @@ CREATE TABLE pengiriman (
     status_kirim VARCHAR(30) NOT NULL
 );
 
-INSERT INTO komoditas (nama, umur_simpan_hari) VALUES
-('Bayam', 3),
-('Kangkung', 3),
-('Stroberi', 4),
-('Jagung Manis', 5),
-('Pisang', 6),
-('Tomat', 7),
-('Cabai', 10);
+INSERT INTO komoditas (nama, umur_simpan_hari, is_deleted) VALUES
+('Bayam', 3, FALSE),
+('Kangkung', 3, FALSE),
+('Stroberi', 4, FALSE),
+('Jagung Manis', 5, FALSE),
+('Pisang', 6, FALSE),
+('Tomat', 7, FALSE),
+('Cabai', 10, FALSE);

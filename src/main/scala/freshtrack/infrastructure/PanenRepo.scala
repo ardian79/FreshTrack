@@ -100,6 +100,7 @@ object PanenRepo {
 
   def simpanPanenDanBatch(komoditasId: Int, lahan: String, beratKg: Double, tanggalPanen: LocalDate, sisaUmur: Int, status: StatusKesegaran): Unit = {
     val conn = getConn()
+    
     try {
       val sqlPanen = "INSERT INTO panen (komoditas_id, lahan, berat_kg, tanggal_panen) VALUES (?, ?, ?, ?)"
       val pstmtPanen = conn.prepareStatement(sqlPanen, Statement.RETURN_GENERATED_KEYS)
@@ -126,6 +127,7 @@ object PanenRepo {
 
     def hapusPanen(idPanen: Int): Unit = {
     val conn = getConn()
+
     try {
       conn.setAutoCommit(false)
 

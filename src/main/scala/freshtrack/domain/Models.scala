@@ -2,8 +2,9 @@ package freshtrack.domain
 
 import java.time.LocalDate
 
+
 enum StatusKesegaran:
-  case Segar, Cukup, Kritis
+    case Segar, Cukup, Kritis
 
 case class Komoditas(
     id: Int,

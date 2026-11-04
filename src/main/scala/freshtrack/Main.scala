@@ -2,6 +2,7 @@ package freshtrack
 
 import freshtrack.web.Routes
 
+
 object Main extends cask.Main {
   val allRoutes = Seq(Routes)
 

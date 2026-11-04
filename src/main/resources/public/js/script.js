@@ -241,7 +241,10 @@ function updateCharts(res) {
             scales: {
                 y: { 
                     beginAtZero: true,
-                    grid: { display: false }
+                    grid: { display: false },
+                    ticks: {
+                        stepSize: 100
+                    }
                 },
                 x: {
                     grid: { display: false },
@@ -288,7 +291,6 @@ function loadKomoditasOptions() {
                 </td>
             </tr>`;
         }
-
         $('#dd-komoditas-list').html(optionsHtml);
         $('#tabel-komoditas').html(tableRows);
     });

@@ -42,6 +42,7 @@ object Logic {
       fungsiHitungSisa.andThen(aturanTerpilih)
 
     val sisaHari = fungsiHitungSisa(umurSimpan)
+    
     val statusBatch = fungsiKomposisiStatus(umurSimpan)
 
     Batch(
@@ -120,6 +121,7 @@ object Logic {
           val terpilih = if head.sisaUmurHari < kandidat.sisaUmurHari then head else kandidat
           telusuri(tail, terpilih)
       }
+
     aktif match {
       case Nil          => None
       case head :: tail => Some(telusuri(tail, head))

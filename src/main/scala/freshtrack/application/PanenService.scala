@@ -69,6 +69,7 @@ object PanenService {
       .flatMap { b =>
         mapPanen.get(b.idPanen).map(p => (p.komoditas, p.beratKg))
       }
+      
       .groupBy(_._1)
       .view.mapValues(_.map(_._2).sum).toMap
 

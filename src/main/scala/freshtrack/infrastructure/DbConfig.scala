@@ -2,6 +2,8 @@ package freshtrack.infrastructure
 
 import java.util.Properties
 
+
+
 object DbConfig {
   private val props = new Properties()
   private val stream = getClass.getClassLoader.getResourceAsStream("application.conf")

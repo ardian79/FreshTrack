@@ -91,6 +91,5 @@ object Routes extends cask.Routes {
 
   @cask.staticResources("/public")
   def staticFileRoutes() = "public"
-
   initialize()
 }
