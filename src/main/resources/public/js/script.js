@@ -1,6 +1,7 @@
 let chartKesegaranInstance = null;
 let chartPrioritasInstance = null;
 
+
 $(document).ready(function () {
     const today = new Date().toISOString().split('T')[0];
     $('#tanggal-panen').val(today);
@@ -411,6 +412,7 @@ function loadRiwayat() {
         `;
         $('#rekap-riwayat-container').html(rekapHtml);
         let rows = '';
+
         if (res.riwayat.length === 0) {
             rows = `<tr><td colspan="6" class="px-6 py-12 text-center bg-slate-50/50">
                 <p class="text-slate-500 text-sm font-medium">Belum ada riwayat pengiriman untuk filter ini.</p>
