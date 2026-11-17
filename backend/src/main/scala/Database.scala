@@ -1,0 +1,249 @@
+package freshtrack
+
+import java.sql.{DriverManager, Statement}
+import java.time.LocalDate
+import java.util.Properties
+
+object Database {
+  private val props = new Properties()
+  private val stream = getClass.getClassLoader.getResourceAsStream("application.conf")
+  if stream != null then props.load(stream)
+
+  private val url: String = props.getProperty("db.url", "jdbc:postgresql://localhost:5432/FreshTrack").replace("\"", "")
+  private val user: String = props.getProperty("db.user", "postgres").replace("\"", "")
+  private val password: String = props.getProperty("db.password", "Lazuaros_7").replace("\"", "")
+
+  private def getConn() = {
+    Class.forName("org.postgresql.Driver")
+    DriverManager.getConnection(url, user, password)
+  }
+
+  // Komoditas
+  def ambilSemuaKomoditas(): List[Komoditas] = {
+    var hasil = List.empty[Komoditas]
+    val conn = getConn()
+    try {
+      val stmt = conn.createStatement()
+      val rs = stmt.executeQuery("SELECT id, nama, umur_simpan_hari FROM komoditas WHERE is_deleted = FALSE ORDER BY nama ASC")
+      while rs.next() do {
+        hasil = hasil :+ Komoditas(
+          rs.getInt("id"),
+          rs.getString("nama"),
+          rs.getInt("umur_simpan_hari")
+        )
+      }
+    } finally {
+      conn.close()
+    }
+    hasil
+  }
+
+  def simpanKomoditas(nama: String, umurSimpanHari: Int): Unit = {
+    val conn = getConn()
+    try {
+      val sql = "INSERT INTO komoditas (nama, umur_simpan_hari) VALUES (?, ?) ON CONFLICT (nama) DO UPDATE SET umur_simpan_hari = EXCLUDED.umur_simpan_hari, is_deleted = FALSE"
+      val pstmt = conn.prepareStatement(sql)
+      pstmt.setString(1, nama.trim)
+      pstmt.setInt(2, umurSimpanHari)
+      pstmt.executeUpdate()
+    } finally {
+      conn.close()
+    }
+  }
+
+  def updateKomoditas(id: Int, nama: String, umur: Int): Unit = {
+    val conn = getConn()
+    try {
+      val sql = "UPDATE komoditas SET nama = ?, umur_simpan_hari = ? WHERE id = ?"
+      val pstmt = conn.prepareStatement(sql)
+      pstmt.setString(1, nama.trim)
+      pstmt.setInt(2, umur)
+      pstmt.setInt(3, id)
+      pstmt.executeUpdate()
+    } finally {
+      conn.close()
+    }
+  }
+
+  def softDeleteKomoditas(id: Int): Unit = {
+    val conn = getConn()
+    try {
+      val sql = "UPDATE komoditas SET is_deleted = TRUE WHERE id = ?"
+      val pstmt = conn.prepareStatement(sql)
+      pstmt.setInt(1, id)
+      pstmt.executeUpdate()
+    } finally {
+      conn.close()
+    }
+  }
+
+  // Panen
+  def ambilSemuaPanen(): List[Panen] = {
+    var hasil = List.empty[Panen]
+    val conn = getConn()
+    try {
+      val stmt = conn.createStatement()
+      val sql = """
+        SELECT p.id, p.komoditas_id, k.nama AS nama_komoditas, k.umur_simpan_hari, p.lahan, p.berat_kg, p.tanggal_panen
+        FROM panen p
+        JOIN komoditas k ON p.komoditas_id = k.id
+        ORDER BY p.id DESC
+      """
+      val rs = stmt.executeQuery(sql)
+      while rs.next() do {
+        hasil = hasil :+ Panen(
+          rs.getInt("id"),
+          rs.getInt("komoditas_id"),
+          rs.getString("nama_komoditas"),
+          rs.getInt("umur_simpan_hari"),
+          rs.getString("lahan"),
+          rs.getDouble("berat_kg"),
+          rs.getDate("tanggal_panen").toLocalDate
+        )
+      }
+    } finally {
+      conn.close()
+    }
+    hasil
+  }
+
+  def simpanPanenDanBatch(komoditasId: Int, lahan: String, beratKg: Double, tanggalPanen: LocalDate, sisaUmur: Int, status: StatusKesegaran): Unit = {
+    val conn = getConn()
+    try {
+      val sqlPanen = "INSERT INTO panen (komoditas_id, lahan, berat_kg, tanggal_panen) VALUES (?, ?, ?, ?)"
+      val pstmtPanen = conn.prepareStatement(sqlPanen, Statement.RETURN_GENERATED_KEYS)
+      pstmtPanen.setInt(1, komoditasId)
+      pstmtPanen.setString(2, lahan.trim)
+      pstmtPanen.setDouble(3, beratKg)
+      pstmtPanen.setDate(4, java.sql.Date.valueOf(tanggalPanen))
+      pstmtPanen.executeUpdate()
+
+      val keys = pstmtPanen.getGeneratedKeys
+      if keys.next() then {
+        val panenId = keys.getInt(1)
+        val sqlBatch = "INSERT INTO batch (panen_id, sisa_umur_hari, status, sudah_dikirim) VALUES (?, ?, ?, false)"
+        val pstmtBatch = conn.prepareStatement(sqlBatch)
+        pstmtBatch.setInt(1, panenId)
+        pstmtBatch.setInt(2, sisaUmur)
+        pstmtBatch.setString(3, status.toString)
+        pstmtBatch.executeUpdate()
+      }
+    } finally {
+      conn.close()
+    }
+  }
+
+  def updatePanen(idPanen: Int, lahan: String, beratKg: Double, tanggalPanen: LocalDate): Unit = {
+    val conn = getConn()
+    try {
+      val sql = "UPDATE panen SET lahan = ?, berat_kg = ?, tanggal_panen = ? WHERE id = ?"
+      val pstmt = conn.prepareStatement(sql)
+      pstmt.setString(1, lahan.trim)
+      pstmt.setDouble(2, beratKg)
+      pstmt.setDate(3, java.sql.Date.valueOf(tanggalPanen))
+      pstmt.setInt(4, idPanen)
+      pstmt.executeUpdate()
+    } finally {
+      conn.close()
+    }
+  }
+
+  def hapusPanen(idPanen: Int): Unit = {
+    val conn = getConn()
+    try {
+      conn.setAutoCommit(false)
+
+      val delPengiriman = conn.prepareStatement("DELETE FROM pengiriman WHERE batch_id IN (SELECT id FROM batch WHERE panen_id = ?)")
+      delPengiriman.setInt(1, idPanen)
+      delPengiriman.executeUpdate()
+
+      val delBatch = conn.prepareStatement("DELETE FROM batch WHERE panen_id = ?")
+      delBatch.setInt(1, idPanen)
+      delBatch.executeUpdate()
+
+      val delPanen = conn.prepareStatement("DELETE FROM panen WHERE id = ?")
+      delPanen.setInt(1, idPanen)
+      delPanen.executeUpdate()
+
+      conn.commit()
+    } catch {
+      case e: Exception =>
+        conn.rollback()
+        throw e
+    } finally {
+      conn.setAutoCommit(true)
+      conn.close()
+    }
+  }
+
+  // Batch
+  def ambilSemuaBatch(): List[Batch] = {
+    var hasil = List.empty[Batch]
+    val conn = getConn()
+    try {
+      val stmt = conn.createStatement()
+      val rs = stmt.executeQuery("SELECT id, panen_id, sisa_umur_hari, status, sudah_dikirim FROM batch ORDER BY id DESC")
+      while rs.next() do {
+        val statusStr = rs.getString("status")
+        val statusEnum = StatusKesegaran.values.find(_.toString.equalsIgnoreCase(statusStr)).getOrElse(StatusKesegaran.Segar)
+        hasil = hasil :+ Batch(
+          rs.getInt("id"),
+          rs.getInt("panen_id"),
+          rs.getInt("sisa_umur_hari"),
+          statusEnum,
+          rs.getBoolean("sudah_dikirim")
+        )
+      }
+    } finally {
+      conn.close()
+    }
+    hasil
+  }
+
+  // Pengiriman
+  def catatPengiriman(idBatch: Int, tanggalKirim: LocalDate, tujuan: String, statusKesegaran: String): Boolean = {
+    val conn = getConn()
+    try {
+      val sqlUpdate = "UPDATE batch SET sudah_dikirim = true WHERE id = ? AND sudah_dikirim = false"
+      val pstmtUpdate = conn.prepareStatement(sqlUpdate)
+      pstmtUpdate.setInt(1, idBatch)
+      val updated = pstmtUpdate.executeUpdate()
+
+      if updated > 0 then {
+        val sqlInsert = "INSERT INTO pengiriman (batch_id, tanggal_kirim, tujuan, status_kirim) VALUES (?, ?, ?, ?)"
+        val pstmtInsert = conn.prepareStatement(sqlInsert)
+        pstmtInsert.setInt(1, idBatch)
+        pstmtInsert.setDate(2, java.sql.Date.valueOf(tanggalKirim))
+        pstmtInsert.setString(3, tujuan.trim)
+        pstmtInsert.setString(4, statusKesegaran)
+        pstmtInsert.executeUpdate()
+        true
+      } else {
+        false
+      }
+    } finally {
+      conn.close()
+    }
+  }
+
+  def ambilSemuaPengiriman(): List[Pengiriman] = {
+    var hasil = List.empty[Pengiriman]
+    val conn = getConn()
+    try {
+      val stmt = conn.createStatement()
+      val rs = stmt.executeQuery("SELECT id, batch_id, tanggal_kirim, tujuan, status_kirim FROM pengiriman ORDER BY id DESC")
+      while rs.next() do {
+        hasil = hasil :+ Pengiriman(
+          rs.getInt("id"),
+          rs.getInt("batch_id"),
+          rs.getDate("tanggal_kirim").toLocalDate,
+          rs.getString("tujuan"),
+          rs.getString("status_kirim")
+        )
+      }
+    } finally {
+      conn.close()
+    }
+    hasil
+  }
+}
