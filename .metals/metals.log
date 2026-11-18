@@ -377,3 +377,316 @@ WARNING: Unmatched cancel notification for request id 292
 2026.11.17 10:22:11 INFO  Memory monitor stopped
 2026.11.17 10:22:11 INFO  shutting down Metals
 2026.11.17 10:22:11 INFO  Exiting server
+2026.11.18 18:11:59 INFO  Started: Metals version 1.6.9 in folders 'C:\Users\Rizal Lazuardi\Downloads\FreshTrack' for client Visual Studio Code 1.146.0.
+2026.11.18 18:12:03 INFO  Memory monitor started
+2026.11.18 18:12:04 WARN  Using H2 2.5.250 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+Nov 18, 2026 6:12:36 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Nov 18, 2026 6:12:37 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2026.11.18 18:17:55 INFO  Shutting down server
+2026.11.18 18:17:55 INFO  Memory monitor stopped
+2026.11.18 18:17:55 INFO  shutting down Metals
+2026.11.18 18:17:55 INFO  Exiting server
+2026.11.18 18:17:55 ERROR Unexpected error initializing server: 
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: Request window/showMessageRequest failed with message: Canceled
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:214)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:198)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:189)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:97)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:97)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.lang.Thread.run(Thread.java:1583)
+
+2026.11.18 18:18:03 INFO  Started: Metals version 1.6.9 in folders 'C:\Users\Rizal Lazuardi\Downloads\FreshTrack' for client Visual Studio Code 1.146.0.
+2026.11.18 18:18:03 INFO  Memory monitor started
+2026.11.18 18:18:04 WARN  Using H2 2.5.250 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+Nov 18, 2026 6:18:04 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2026.11.18 18:21:51 INFO  Started: Metals version 1.6.9 in folders 'C:\Users\Rizal Lazuardi\Downloads\FreshTrack' for client Visual Studio Code 1.146.0.
+2026.11.18 18:21:51 INFO  Memory monitor started
+2026.11.18 18:21:55 WARN  Using H2 2.5.250 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026.11.18 18:22:08 INFO  Shutting down server
+2026.11.18 18:22:08 INFO  Memory monitor stopped
+2026.11.18 18:22:08 INFO  shutting down Metals
+2026.11.18 18:22:08 INFO  Exiting server
+2026.11.18 18:23:33 INFO  Started: Metals version 1.6.9 in folders 'C:\Users\Rizal Lazuardi\Downloads\FreshTrack' for client Visual Studio Code 1.146.0.
+2026.11.18 18:23:33 INFO  Memory monitor started
+2026.11.18 18:23:34 WARN  Using H2 2.5.250 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026.11.18 18:25:28 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+Nov 18, 2026 6:25:31 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+2026.11.18 18:25:31 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:25:31 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:25:35 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:25:50 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:25:50 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:25:52 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:25:52 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:25:52 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:25:58 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:25:58 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:25:58 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:25:58 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:30 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:30 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:30 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:30 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:30 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:31 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:31 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:31 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:31 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:31 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:31 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:32 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:32 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:32 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:32 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:32 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:32 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:32 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:33 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:33 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:33 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:33 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:33 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:33 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:33 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:33 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:35 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:35 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:26:39 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:26:42 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:26 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:26 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:26 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:26 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:26 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:28 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:27:28 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:28 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:28 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:28 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:28 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:28 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:30 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:30 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:30 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:31 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:31 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:31 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:31 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:32 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:27:32 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:36 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:37 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:37 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:37 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:37 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:38 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:38 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:38 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:38 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:39 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:40 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:27:40 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:41 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:56 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:56 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:56 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:58 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:27:58 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:28:18 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:28:29 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:29:11 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:29:13 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:29:15 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:29:16 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:29:16 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:29:17 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:29:17 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:29:18 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:29:18 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:29:19 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:29:19 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:29:30 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:29:30 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:29:30 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:29:30 INFO  Created report: Optional[file:///C:/Users/Rizal%20Lazuardi/Downloads/FreshTrack/backend/src/main/scala/Routes.scala]
+2026.11.18 18:29:30 INFO  empty definition using pc, found symbol in pc: scala/Int# (full report at: "C:\Users\Rizal Lazuardi\Downloads\FreshTrack\.metals\.reports\metals-full\2026-11-18\r_empty-definition_18-29-30-680.md")
+2026.11.18 18:29:30 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:29:30 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:15 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:19 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:19 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:19 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:21 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:30:21 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:21 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:21 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:21 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:22 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:22 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:23 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:23 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:23 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:23 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:23 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:23 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:25 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:30:25 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:27 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:27 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:27 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:27 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:27 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:28 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:28 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:28 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:29 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:30:29 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:30:36 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:31:15 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:34:16 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:34:16 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:34:16 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:34:16 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:34:16 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:34:18 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:34:18 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:34:18 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:34:18 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:34:42 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:34:42 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:35:18 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:35:18 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:35:18 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:35:18 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:35:19 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:35:19 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:35:19 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:35:20 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:35:20 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:35:21 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:35:22 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:35:22 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:50 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:50 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:50 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:52 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:52 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:52 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:52 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:52 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:52 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:56 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:57 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:57 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:57 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:58 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:58 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:58 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:59 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:59 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:59 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:38:00 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:37:59 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:38:00 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:38:01 ERROR scalafmt: [3.11.5] C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala:49: error: [dialect scala213] `(` expected but `identifier` found
+    val tgl = if tanggal.nonEmpty then LocalDate.parse(tanggal) else LocalDate.now()
+                 ^
+2026.11.18 18:38:01 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:38:03 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:38:03 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:38:03 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:38:03 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:38:03 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:38:04 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:38:04 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:38:04 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:38:05 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:38:05 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:38:04 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:38:04 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:38:04 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:38:06 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:38:06 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:38:07 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:39:31 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:39:31 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:39:31 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:39:31 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:39:31 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:39:32 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:39:32 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:39:33 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:39:32 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:39:32 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:39:32 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:39:33 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:39:33 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+Nov 18, 2026 6:39:33 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 421
+2026.11.18 18:39:33 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:39:33 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:39:34 INFO  Created report: Optional[file:///C:/Users/Rizal%20Lazuardi/Downloads/FreshTrack/backend/src/main/scala/Routes.scala]
+2026.11.18 18:39:34 INFO  empty definition using pc, found symbol in pc:  (full report at: "C:\Users\Rizal Lazuardi\Downloads\FreshTrack\.metals\.reports\metals-full\2026-11-18\r_empty-definition_18-39-34-187.md")
+2026.11.18 18:39:34 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:39:33 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:39:35 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+Nov 18, 2026 6:39:35 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 430
+2026.11.18 18:39:35 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:39:35 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:39:36 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:39:36 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:49 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:49 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:49 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:51 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:51 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:51 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:52 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:52 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:52 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:54 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:54 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:54 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:54 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:54 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:54 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:54 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:54 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:54 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:54 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:54 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:54 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:54 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:42:55 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:55 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:55 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:55 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:56 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:42:56 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:42:57 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:43:01 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:43:01 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:43:01 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:43:02 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:43:02 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:43:02 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:43:02 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:43:03 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:43:03 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:43:03 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:43:03 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:43:03 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:43:04 WARN  no build target for: C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala
+2026.11.18 18:43:04 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:43:21 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:43:21 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.11.18 18:43:22 INFO  no build target found for C:\Users\Rizal Lazuardi\Downloads\FreshTrack\backend\src\main\scala\Routes.scala. Using presentation compiler with project's scala-library version: 3.3.8

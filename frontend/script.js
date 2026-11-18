@@ -97,7 +97,7 @@ function badgeStatus(status) {
 function emptyState(pesan) {
     return `<tr>
         <td colspan="7" class="px-6 py-12 text-center bg-slate-50/50">
-            <img src="/public/assets/images/empty.png" alt="Kosong" class="w-24 h-24 mx-auto mb-3 opacity-60 grayscale" onerror="this.src='https://placehold.co/100x100/e2e8f0/94a3b8?text=Empty'">
+            <img src="./images/empty.png" alt="Kosong" class="w-24 h-24 mx-auto mb-3 opacity-60 grayscale" onerror="this.src='https://placehold.co/100x100/e2e8f0/94a3b8?text=Empty'">
             <p class="text-slate-500 text-sm font-medium">${pesan}</p>
         </td>
     </tr>`;
