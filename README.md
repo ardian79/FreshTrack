@@ -27,8 +27,6 @@ Aplikasi ini dikembangkan sebagai pemenuhan **Final Project Mata Kuliah Pemrogra
 
 ## Tampilan Antarmuka (Screenshots)
 
-> Catatan: Ganti gambar placeholder berikut dengan screenshot asli aplikasi yang disimpan di folder `frontend/images/`.
-
 ### 1. Dashboard Utama
 
 Menampilkan metrik gudang dan grafik distribusi komoditas secara interaktif.
@@ -106,11 +104,15 @@ Proyek FreshTrack menggunakan struktur folder yang memisahkan frontend dan backe
 FreshTrack/
 ├── frontend/
 │   ├── images/
+│   │   ├── banner-farm.jpg
 │   │   ├── dashboard.png
-│   │   ├── prioritas.png
+│   │   ├── empty.png
 │   │   ├── input-panen.png
-│   │   ├── riwayat.png
-│   │   └── komoditas.png
+│   │   ├── komoditas.png
+│   │   ├── logo.png
+│   │   ├── prioritas.png
+│   │   ├── prioritas_pengiriman.png
+│   │   └── riwayat.png
 │   ├── index.html
 │   └── script.js
 │
