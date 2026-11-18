@@ -25,7 +25,7 @@ Aplikasi ini dikembangkan sebagai pemenuhan **Final Project Mata Kuliah Pemrogra
 
 ---
 
-## Tampilan Antarmuka (Screenshots)
+## Tampilan Antarmuka
 
 ### 1. Dashboard Utama
 
