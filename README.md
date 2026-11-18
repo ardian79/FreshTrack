@@ -11,7 +11,7 @@ Aplikasi ini dikembangkan sebagai pemenuhan **Final Project Mata Kuliah Pemrogra
 1. **Dashboard Interaktif**  
    Menampilkan ringkasan total berat hasil panen, jumlah batch, status kesegaran (Segar, Cukup, dan Kritis), serta grafik distribusi komoditas.
 
-2. **Manajemen Komoditas (Master Data)**  
+2. **Manajemen Komoditas**  
    Fitur CRUD (Create, Read, Update, Delete) untuk mengelola daftar komoditas beserta standar umur simpannya.
 
 3. **Input Hasil Panen**  
