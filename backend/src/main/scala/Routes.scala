@@ -4,9 +4,9 @@ import java.time.LocalDate
 
 object Routes extends cask.Routes {
 
-  // Root
+  // Root Redirect
   @cask.get("/")
-  def root() = cask.Redirect("/public/index.html")
+  def root() = cask.Redirect("/ui/index.html")
 
   // Dashboard
   @cask.get("/api/dashboard")
@@ -96,8 +96,8 @@ object Routes extends cask.Routes {
   }
 
   // Static File
-  @cask.staticFiles("/public")
-  def staticFileRoutes() = "C:/Users/ADVAN/Documents/FreshTrack/frontend"
+  @cask.staticFiles("/ui")
+  def staticFileRoutes() = new java.io.File("../frontend").getCanonicalPath()
   
   initialize()
 }

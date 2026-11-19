@@ -1,0 +1,19 @@
+# SBT / Scala Build
+target/
+project/target/
+project/project/
+.bsp/
+
+# Metals (VS Code Scala Extension)
+.metals/
+.bloop/
+.vscode/
+
+# OS & IDE files
+.DS_Store
+Thumbs.db
+.idea/
+*.class
+
+# Logs
+*.log
