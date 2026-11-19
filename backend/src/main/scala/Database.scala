@@ -11,7 +11,7 @@ object Database {
 
   private val url: String = props.getProperty("db.url", "jdbc:postgresql://localhost:5432/FreshTrack").replace("\"", "")
   private val user: String = props.getProperty("db.user", "postgres").replace("\"", "")
-  private val password: String = props.getProperty("db.password", "Lazuaros_7").replace("\"", "")
+  private val password: String = props.getProperty("db.password", "passwordmu").replace("\"", "")
 
   private def getConn() = {
     Class.forName("org.postgresql.Driver")
