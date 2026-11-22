@@ -6,7 +6,7 @@ object Routes extends cask.Routes {
 
   // Root Redirect
   @cask.get("/")
-  def root() = cask.Redirect("/ui/index.html")
+  def root() = cask.Redirect("/public/index.html")
 
   // Dashboard
   @cask.get("/api/dashboard")
@@ -96,7 +96,7 @@ object Routes extends cask.Routes {
   }
 
   // Static File
-  @cask.staticFiles("/ui")
+  @cask.staticFiles("/public")
   def staticFileRoutes() = new java.io.File("../frontend").getCanonicalPath()
   
   initialize()
