@@ -71,7 +71,7 @@ Halaman untuk mengelola daftar komoditas dan mengatur standar umur simpannya.
 | JavaScript | Logika interaksi frontend |
 | jQuery | Manipulasi DOM dan AJAX |
 | Chart.js | Visualisasi data dalam bentuk grafik |
-| sbt | Scala Build Tool |
+| Scala CLI | Kompilasi, menjalankan program, dan pengelolaan dependensi Scala |
 | MUnit | Framework unit testing |
 
 ---
@@ -89,7 +89,7 @@ Berikut merupakan implementasi konsep Pemrograman Fungsional yang diterapkan dal
 | **First-Class Function** | Menyimpan fungsi ke dalam nilai atau variabel, seperti `val aturanStandar: Int => StatusKesegaran = ...`, kemudian memasukkannya ke dalam Map melalui `aturanStatusMap`. |
 | **Lambda Expression (2+)** | Menggunakan ekspresi lambda pada operasi koleksi, seperti `filter(b => !b.sudahDikirim)` dan `map((status, daftar) => ...)`. |
 | **Higher-Order Function** | Fungsi `prosesSemuaBatch[A](batches: List[Batch])(f: Batch => A)` yang menerima fungsi lain sebagai parameter. |
-| **Function Composition** | Menggunakan `.andThen` pada `fungsiHitungSisa.andThen(aturanTerpilih)` untuk menggabungkan fungsi. |
+| **Function Composition** | Menggunakan `.andThen` pada `fungsiHitung.andThen(aturanTerpilih)` untuk menggabungkan fungsi. |
 | **Function Chaining** | Rangkaian operasi pada `ambilPrioritasUtama`, seperti `.filter(...).sortBy(...).take(jumlah)`. |
 | **Operasi Koleksi** | Menggunakan `.map`, `.filter`, `.groupBy`, `.partition`, dan `.foldLeft` pada Service dan Logic. |
 | **Rekursi** | Menggunakan fungsi `@tailrec telusuriRiwayat(...)` dan `cariBatchTertua(...)` untuk melakukan pencarian data secara rekursif. |
@@ -131,7 +131,7 @@ FreshTrack/
 │   │   └── test/
 │   │       └── scala/
 │   │           └── LogicTest.scala
-│   └── build.sbt
+│   └── project.scala
 │
 └── database.sql
 ```
@@ -148,6 +148,7 @@ FreshTrack/
 - **Routes.scala**: Mengelola endpoint API menggunakan Cask.
 - **LogicTest.scala**: Berisi unit test untuk menguji logika fungsional.
 - **application.conf**: Menyimpan konfigurasi aplikasi dan koneksi database.
+- **project.scala**: Menyimpan konfigurasi Scala CLI, seperti versi Scala dan dependensi proyek.
 - **database.sql**: Berisi skema database dan data awal.
 
 ---
@@ -159,7 +160,7 @@ FreshTrack/
 Pastikan perangkat lunak berikut telah terinstal:
 
 - **JDK (Java Development Kit)** versi 11 atau lebih baru.
-- **sbt (Scala Build Tool)** versi 2.x.
+- **Scala CLI** versi terbaru atau versi yang kompatibel dengan proyek.
 - **PostgreSQL** beserta pgAdmin atau DBeaver.
 - **Visual Studio Code** (opsional, untuk melihat dan mengedit kode).
 
@@ -186,10 +187,10 @@ Pastikan perangkat lunak berikut telah terinstal:
    cd backend
    ```
 
-3. Jalankan server menggunakan sbt:
+3. Jalankan server menggunakan Scala CLI:
 
    ```bash
-   sbt run
+   scala run src/main/scala
    ```
 
 4. Tunggu hingga proses kompilasi dan server selesai dijalankan.
@@ -200,7 +201,7 @@ Pastikan perangkat lunak berikut telah terinstal:
    http://localhost:8080
    ```
 
-   > Proses pertama kali menjalankan sbt mungkin membutuhkan waktu lebih lama karena sbt perlu mengunduh dependensi proyek.
+   > Proses pertama kali menjalankan Scala CLI mungkin membutuhkan waktu lebih lama karena Scala CLI perlu mengunduh dependensi proyek.
 
 ### 4. Membuka Aplikasi
 
@@ -219,7 +220,7 @@ FreshTrack menyediakan unit testing menggunakan **MUnit** untuk memastikan logik
 Untuk menjalankan seluruh unit test, buka terminal pada direktori `backend`, kemudian jalankan:
 
 ```bash
-sbt test
+scala test src/test/scala
 ```
 
 Perintah tersebut akan menjalankan seluruh pengujian yang terdapat pada direktori:
